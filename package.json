@@ -24,16 +24,67 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help"
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "git-precommit-checks && precise-commit"
+    }
+  },
+  "hooks": {
+    "pre-commit": [
+      {
+        "message": "You’ve got leftover conflict markers",
+        "regex": "/^[<>|=]{4,}/m"
+      },
+      {
+        "filter": "\\.ts$",
+        "message": "You’ve got leftover `console.log`",
+        "regex": "console\\.log"
+      },
+      {
+        "message": "You have unfinished devs",
+        "nonBlocking": "true",
+        "regex": "(?:FIXME|TODO)"
+      }
+    ]
+  },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@nestjs/common": "^6.2.4",
+    "@nestjs/core": "^6.2.4",
+    "@nestjs/platform-express": "^6.2.4",
+    "reflect-metadata": "^0.1.12"
+  },
   "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@nestjs/schematics": "^6.3.0",
+    "@nestjs/testing": "^6.2.4",
+    "@nrwl/eslint-plugin-nx": "8.6.0",
+    "@nrwl/jest": "8.6.0",
+    "@nrwl/nest": "^8.6.0",
+    "@nrwl/node": "8.6.0",
     "@nrwl/workspace": "8.6.0",
+    "@types/jest": "24.0.9",
     "@types/node": "~8.9.4",
+    "@typescript-eslint/eslint-plugin": "2.0.0-alpha.4",
+    "@typescript-eslint/parser": "2.0.0-alpha.4",
     "dotenv": "6.2.0",
+    "eslint": "6.1.0",
+    "eslint-config-prettier": "6.0.0",
+    "git-precommit-checks": "^2.3.4",
+    "husky": "^3.0.9",
+    "jest": "24.1.0",
+    "precise-commits": "^1.0.2",
+    "prettier": "1.18.2",
+    "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "eslint": "6.1.0",
-    "typescript": "~3.4.5",
-    "prettier": "1.18.2"
+    "typescript": "~3.4.5"
   }
 }

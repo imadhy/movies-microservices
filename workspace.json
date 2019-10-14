@@ -1,8 +1,314 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "f01": {
+      "root": "apps/f01",
+      "sourceRoot": "apps/f01/src",
+      "projectType": "application",
+      "prefix": "f01",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/f01",
+            "main": "apps/f01/src/main.ts",
+            "tsConfig": "apps/f01/tsconfig.app.json",
+            "assets": [
+              "apps/f01/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/f01/src/environments/environment.ts",
+                  "with": "apps/f01/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "f01:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/f01/.eslintrc",
+            "tsConfig": [
+              "apps/f01/tsconfig.app.json",
+              "apps/f01/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/f01/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/f01/jest.config.js",
+            "tsConfig": "apps/f01/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "f02": {
+      "root": "apps/f02",
+      "sourceRoot": "apps/f02/src",
+      "projectType": "application",
+      "prefix": "f02",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/f02",
+            "main": "apps/f02/src/main.ts",
+            "tsConfig": "apps/f02/tsconfig.app.json",
+            "assets": [
+              "apps/f02/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/f02/src/environments/environment.ts",
+                  "with": "apps/f02/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "f02:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/f02/.eslintrc",
+            "tsConfig": [
+              "apps/f02/tsconfig.app.json",
+              "apps/f02/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/f02/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/f02/jest.config.js",
+            "tsConfig": "apps/f02/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "f03": {
+      "root": "apps/f03",
+      "sourceRoot": "apps/f03/src",
+      "projectType": "application",
+      "prefix": "f03",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/f03",
+            "main": "apps/f03/src/main.ts",
+            "tsConfig": "apps/f03/tsconfig.app.json",
+            "assets": [
+              "apps/f03/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/f03/src/environments/environment.ts",
+                  "with": "apps/f03/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "f03:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/f03/.eslintrc",
+            "tsConfig": [
+              "apps/f03/tsconfig.app.json",
+              "apps/f03/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/f03/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/f03/jest.config.js",
+            "tsConfig": "apps/f03/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "d01": {
+      "root": "apps/d01",
+      "sourceRoot": "apps/d01/src",
+      "projectType": "application",
+      "prefix": "d01",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/d01",
+            "main": "apps/d01/src/main.ts",
+            "tsConfig": "apps/d01/tsconfig.app.json",
+            "assets": [
+              "apps/d01/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/d01/src/environments/environment.ts",
+                  "with": "apps/d01/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "d01:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/d01/.eslintrc",
+            "tsConfig": [
+              "apps/d01/tsconfig.app.json",
+              "apps/d01/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/d01/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/d01/jest.config.js",
+            "tsConfig": "apps/d01/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "d02": {
+      "root": "apps/d02",
+      "sourceRoot": "apps/d02/src",
+      "projectType": "application",
+      "prefix": "d02",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/d02",
+            "main": "apps/d02/src/main.ts",
+            "tsConfig": "apps/d02/tsconfig.app.json",
+            "assets": [
+              "apps/d02/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/d02/src/environments/environment.ts",
+                  "with": "apps/d02/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "d02:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/d02/.eslintrc",
+            "tsConfig": [
+              "apps/d02/tsconfig.app.json",
+              "apps/d02/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/d02/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/d02/jest.config.js",
+            "tsConfig": "apps/d02/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/nest"
   },
   "schematics": {
     "@nrwl/workspace": {
@@ -48,5 +354,6 @@
         "linter": "eslint"
       }
     }
-  }
+  },
+  "defaultProject": "f01"
 }
