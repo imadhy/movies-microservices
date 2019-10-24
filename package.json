@@ -22,7 +22,9 @@
     "format:check": "nx format:check",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "precise-commits": "precise-commits",
+    "precommit": "npm run precise-commits"
   },
   "commitlint": {
     "extends": [
@@ -32,19 +34,20 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "git-precommit-checks && precise-commit"
+      "pre-commit": "git-precommit-checks && precise-commits"
     }
   },
-  "hooks": {
-    "pre-commit": [
+  "git-precommit-checks": {
+    "rules": [
+      {
+        "filter": "\\.js$",
+        "nonBlocking": "true",
+        "message": "You’ve got leftover `console.log`",
+        "regex": "console\\.log"
+      },
       {
         "message": "You’ve got leftover conflict markers",
         "regex": "/^[<>|=]{4,}/m"
-      },
-      {
-        "filter": "\\.ts$",
-        "message": "You’ve got leftover `console.log`",
-        "regex": "console\\.log"
       },
       {
         "message": "You have unfinished devs",
