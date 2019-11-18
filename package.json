@@ -81,6 +81,7 @@
     "eslint": "6.1.0",
     "eslint-config-prettier": "6.0.0",
     "git-precommit-checks": "^2.3.4",
+    "graphql": "^14.5.8",
     "husky": "^3.0.9",
     "jest": "24.1.0",
     "precise-commits": "^1.0.2",
