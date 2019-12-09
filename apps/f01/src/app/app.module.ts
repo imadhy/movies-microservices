@@ -13,6 +13,6 @@ import { GraphQLModule } from '@nestjs/graphql';
       context: ({ req }) => ({ req }),
       autoSchemaFile: 'schema.gql'
     })
-  ],
+  ]
 })
 export class AppModule {}
