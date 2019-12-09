@@ -11,27 +11,27 @@ export class UserDTO {
     @Field()
     readonly email: string;
     @Field()
-    readonly country: string;
+    country?: string;
     @Field()
-    readonly created_at: Date;
+    created_at?: Date;
     @Field()
-    readonly updated_at: Date;
+    updated_at?: Date;
     @Field()
-    readonly password: string;
+    password?: string;
     @Field()
-    readonly birthdate: Date;
+    birthdate?: Date;
     @Field()
-    readonly gender: string;
+    gender?: string;
     @Field()
-    readonly auth: string;
+    auth?: string;
     @Field()
-    readonly ip_address: string;
+    ip_address?: string;
     @Field()
-    readonly last_connexion: Date;
+    last_connexion?: Date;
     @Field()
-    readonly admin: boolean;
+    admin?: boolean;
     @Field()
-    readonly os: string;
+    os?: string;
     @Field()
-    readonly os_version: string;
+    os_version?: string;
 }
