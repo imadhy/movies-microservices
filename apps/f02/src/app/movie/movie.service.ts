@@ -46,24 +46,19 @@ export class MovieService {
     return this.movies;
   }
 
-  // Retrieve Movie Creation Date
-  async getMovieCreationDate(id: string): Promise<Date | undefined> {
-    return this.movies.find(movie => movie.id === id).createdAt;
-  }
-
-  // Retrieve All Users
-  async getUpdateDate(id: string): Promise<Date | undefined> {
-    return this.movies.find(movie => movie.id === id).updatedAt;
+  // Retrieve Movie Release Date
+  async getMovieReleaseDate(id: string): Promise<Date | undefined> {
+    return this.movies.find(movie => movie.id === id).release;
   }
 
   // Retrieve Movie Type
-  async getMovieLength(id: string): Promise<number | undefined> {
-    return this.movies.find(movie => movie.id === id).length;
+  async getMovieDuration(id: string): Promise<number | undefined> {
+    return this.movies.find(movie => movie.id === id).duration;
   }
 
   // Retrieve Movie Category
   async getMovieCategory(id: string): Promise<string | undefined> {
-    return this.movies.find(movie => movie.id === id).category;
+    return this.movies.find(movie => movie.id === id).category_id;
   }
 
   // Add Movie
@@ -86,10 +81,4 @@ export class MovieService {
     return 'Movie Deleted';
   }
 
-  // Unlike Movie
-  async commentMovie(id: string, comment: string): Promise<string | undefined> {
-    // Comment Movie
-
-    return 'Movie Commented';
-  }
 }

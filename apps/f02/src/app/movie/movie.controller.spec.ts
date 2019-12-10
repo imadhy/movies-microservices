@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MovieController } from './movie.controller';
 
-describe('Media Controller', () => {
+describe('Movie Controller', () => {
   let controller: MovieController;
 
   beforeEach(async () => {

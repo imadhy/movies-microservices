@@ -7,4 +7,4 @@ import { MovieController } from './movie.controller';
   providers: [MovieService],
   exports: [MovieService]
 })
-export class MediaModule {}
+export class MovieModule {}
