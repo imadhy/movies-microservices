@@ -10,7 +10,7 @@ import { MovieService } from './movie.service';
 
 export type Media = any;
 
-@Controller('media')
+@Controller('movie')
 export class MediaController {
   constructor(private readonly movieservice: MovieService) {}
 
