@@ -25,7 +25,7 @@ CREATE TABLE comments
     created_at DATE,
     updated_at DATE,
     rating INTEGER,
-    comment VARCHAR(255)
+    text VARCHAR(255)
 );
 
 INSERT INTO users (first_name, last_name, email, country, created_at, birthday, gender, admin) VALUES ('valentin', 'guibert', 'valentin@superdeveloper.com', 'France', '2019-12-10', '1998-05-12', 'male', false);
