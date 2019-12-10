@@ -16,6 +16,3 @@ describe('movie Controller', () => {
     expect(controller).toBeDefined();
   });
 });
-
-
-

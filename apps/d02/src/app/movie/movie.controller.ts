@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Put,
-  Delete,
-  Param,
-  Body
-} from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { MovieDTO } from '@movie-ms/dto';
 
@@ -39,4 +31,3 @@ export class MovieController {
     return this.MovieService.destroy(id);
   }
 }
-

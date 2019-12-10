@@ -10,6 +10,3 @@ export interface MovieDTO {
   createdAt: Date;
   updatedAt: Date;
 }
-
-
-

@@ -16,6 +16,3 @@ describe('MovieService', () => {
     expect(movie).toBeDefined();
   });
 });
-
-
-
