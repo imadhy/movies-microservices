@@ -9,21 +9,7 @@ import { MovieService } from './movie/movie.service';
 import { MovieEntity } from '../../../../libs/dto/src/lib/d02/movie.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-
-      username: 'root',
-      password: 'nuggets',
-      database: 'movies-microservices',
-
-      entities: [MovieEntity],
-      synchronize: true
-    }),
-    TypeOrmModule.forFeature([MovieEntity])
-  ],
+  imports: [],
   controllers: [AppController, MovieController],
   providers: [AppService, MovieService]
 })
