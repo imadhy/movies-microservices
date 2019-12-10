@@ -19,9 +19,9 @@ export class MediaService {
         director: 1,
         producer: 1,
         release: Date(),
-        synopsis: "A chemistry teacher, Walter Black, try to make meth",
+        synopsis: 'A chemistry teacher, Walter Black, try to make meth',
         createdAt: Date(),
-        updatedAt: Date(),
+        updatedAt: Date()
       },
       {
         id: '192533a2-f84d-44ac-9332-ab408552f66a',
@@ -31,13 +31,11 @@ export class MediaService {
         director: 2,
         producer: 2,
         release: Date(),
-        synopsis: "PAN PAN PAN PAN",
+        synopsis: 'PAN PAN PAN PAN',
         createdAt: Date(),
-        updatedAt: Date(),
+        updatedAt: Date()
       }
     ];
-
-    this.playlist = [];
   }
 
   // Retrieve User By Id
