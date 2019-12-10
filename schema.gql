@@ -31,11 +31,6 @@ type MessageDTO {
   status: Int!
 }
 
-type Mutation {
-  signup(input: SignupInput!): MessageDTO!
-  signin(input: SigninInput!): String!
-}
-
 type PersonDTO {
   id: ID!
   firstname: String!
@@ -47,18 +42,6 @@ type Query {
   users: [UserDTO!]!
   findUser(id: String!): UserDTO!
   deleteUser(id: String!): MessageDTO!
-}
-
-input SigninInput {
-  email: String!
-  password: String!
-}
-
-input SignupInput {
-  firstname: String!
-  lastname: String!
-  email: String!
-  password: String!
 }
 
 type UserDTO {
