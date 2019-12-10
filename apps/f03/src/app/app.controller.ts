@@ -10,4 +10,19 @@ export class AppController {
   getData() {
     return this.appService.getData();
   }
+
+  @Get('getNbFavByMedia')
+  getNbFavByMedia(): String {
+    return this.appService.getNbFavByMedia();
+  }
+
+  @Get('getCommentByMedia')
+  getCommentByMedia(): String {
+    return this.appService.getCommentByMedia();
+  }
+
+  @Get('getTopDixRateMediaByUser')
+  getTopDixRateMediaByUser(): String {
+    return this.appService.getTopDixRateMediaByUser();
+  }
 }
