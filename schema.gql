@@ -61,7 +61,7 @@ type Person {
 
 type Query {
   users: [User!]!
-  findUser(id: String!): User!
+  getUserByUserId(id: String!): User!
   deleteUser(id: String!): Message!
 }
 

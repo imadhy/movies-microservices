@@ -51,13 +51,8 @@ export class UserService {
     };
   }
 
-  async findOneById(id: string): Promise<User | undefined> {
+  async getUserByUserId(id: string): Promise<User | undefined> {
     return this.users.find(user => user.id === id);
-  }
-
-  async update(id: string, data: User) {
-    let user = this.users.find(user => user.id === id);
-    return; // Update
   }
 
   async delete(id: string): Promise<Message> {

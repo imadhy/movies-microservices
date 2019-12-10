@@ -22,8 +22,8 @@ export class UserResolver {
   }
 
   @Query(() => User) // Find one user by id
-  async findUser(@Args('id') id: string) {
-    return await this.userService.findOneById(id);
+  async getUserByUserId(@Args('id') id: string) {
+    return await this.userService.getUserByUserId(id);
   }
 
   @Query(() => Message) // Delete user by id
