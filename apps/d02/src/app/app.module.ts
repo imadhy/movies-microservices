@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 
 import { MovieController } from './movie/movie.controller';
 import { MovieService } from './movie/movie.service';
-import { MovieEntity } from './movie/movie.entity';
+import { MovieEntity } from '../../../../libs/dto/src/lib/d02/movie.entity';
 
 @Module({
   imports: [
