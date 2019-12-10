@@ -55,7 +55,7 @@ export class UserService {
     return this.users.find(user => user.id === id);
   }
 
-  async delete(id: string): Promise<Message> {
+  async deleteUser(id: string): Promise<Message> {
     this.users.splice(this.users.findIndex(user => user.id === id), 1);
     return {
       message: 'Your account is successfully deleted.',

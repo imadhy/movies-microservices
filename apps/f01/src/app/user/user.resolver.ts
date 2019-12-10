@@ -28,6 +28,6 @@ export class UserResolver {
 
   @Query(() => Message) // Delete user by id
   async deleteUser(@Args('id') id: string) {
-    return this.userService.delete(id);
+    return this.userService.deleteUser(id);
   }
 }
