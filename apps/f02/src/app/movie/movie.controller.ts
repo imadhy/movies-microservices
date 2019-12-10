@@ -11,7 +11,7 @@ import { MovieService } from './movie.service';
 export type Media = any;
 
 @Controller('movie')
-export class MediaController {
+export class MovieController {
   constructor(private readonly movieservice: MovieService) {}
 
   // Get All Medias
