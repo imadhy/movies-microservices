@@ -1,11 +1,11 @@
-import { ObjectType, Field, Int } from "type-graphql";
+import { ObjectType, Field, Int } from 'type-graphql';
 
 @ObjectType()
-export class MessageDTO {
+export class Message {
   @Field()
   readonly message: string;
   @Field()
   readonly type: string;
   @Field(() => Int)
-  readonly status: number
+  readonly status: number;
 }
