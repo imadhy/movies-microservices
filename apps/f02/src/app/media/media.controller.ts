@@ -26,7 +26,7 @@ export class MediaController {
     return this.mediaService.getMediaById(id);
   }
 
-  // Get Media categroy
+  // Get Media category
   @Get(':id/category')
   getMediaCategory(@Param('id') id: string) {
     return this.mediaService.getMediaCategory(id);

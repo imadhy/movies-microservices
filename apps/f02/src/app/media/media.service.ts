@@ -13,23 +13,27 @@ export class MediaService {
     this.medias = [
       {
         id: '00c8ade3-b1e2-4362-86da-80d841fea5be',
+        category_id: 1,
         title: 'Breaking Good',
-        info: 'A chemistry teacher, Walter Black, try to make meth',
+        duration: 125,
+        director: 1,
+        producer: 1,
+        release: Date(),
+        synopsis: "A chemistry teacher, Walter Black, try to make meth",
         createdAt: Date(),
         updatedAt: Date(),
-        type: 'serie',
-        length: 125,
-        category: 'action'
       },
       {
-        id: 'e5e49c22-3ff2-4a11-8903-47471f6cdad1',
+        id: '192533a2-f84d-44ac-9332-ab408552f66a',
+        category_id: 2,
         title: 'Fiction Pulpeuse',
-        info: 'Pew Pew, Boom boom',
+        duration: 136,
+        director: 2,
+        producer: 2,
+        release: Date(),
+        synopsis: "PAN PAN PAN PAN",
         createdAt: Date(),
         updatedAt: Date(),
-        type: 'movie',
-        length: 136,
-        category: 'action'
       }
     ];
 
@@ -54,11 +58,6 @@ export class MediaService {
   // Retrieve All Users
   async getUpdateDate(id: string): Promise<Date | undefined> {
     return this.medias.find(media => media.id === id).updatedAt;
-  }
-
-  // Retrieve Media Type
-  async getMediaType(id: string): Promise<string | undefined> {
-    return this.medias.find(media => media.id === id).type;
   }
 
   // Retrieve Media Type
@@ -87,21 +86,6 @@ export class MediaService {
   // Delete Media By Id
   async deleteMediaById(id: string): Promise<string | undefined> {
     let index = this.medias.indexOf(this.medias.find(media => media.id === id));
-    this.medias.splice(index, 1);
-    return 'Media Deleted';
-  }
-
-  // Add Media To Playlist
-  async addToPlaylist(id: string): Promise<Playlist | undefined> {
-    this.playlist.push(this.medias.find(media => media.id === id));
-    return this.playlist;
-  }
-
-  // Delete Media To Playlist
-  async deleteFromPlaylist(id: string): Promise<Playlist | undefined> {
-    let index = this.playlist.indexOf(
-      this.playlist.find(media => media.id === id)
-    );
     this.medias.splice(index, 1);
     return 'Media Deleted';
   }
