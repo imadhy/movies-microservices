@@ -1,5 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { CategoryEntity } from '../category/category.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn
+} from 'typeorm';
+// import { CategoryEntity } from '../category/category.entity';
 
 @Entity('Movie')
 export class MovieEntity {
@@ -33,7 +39,7 @@ export class MovieEntity {
   @Column()
   updatedAt: Date;
 
-  @ManyToOne(() => CategoryEntity, category => category.id, { primary: true })
-  @JoinColumn({ name: 'category_id' })
-  category: Promise<CategoryEntity>;
+  // @ManyToOne(() => CategoryEntity, category => category.id, { primary: true })
+  // @JoinColumn({ name: 'category_id' })
+  // category: Promise<CategoryEntity>;
 }
