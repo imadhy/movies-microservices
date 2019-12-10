@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User, Message } from '@movie-ms/dto';
 import { v4 as uuid } from 'uuid';
+import { UserInput } from './inputs/user.input';
 
 @Injectable()
 export class UserService {
@@ -30,14 +31,17 @@ export class UserService {
   }
 
   async findAll(): Promise<User[]> {
-    return this.users;
+      return this.users;
   }
 
-  async create(user: User): Promise<Message> {
+  async addUser(user: UserInput): Promise<Message> {
     this.users.push({
       id: uuid(),
       first_name: user.first_name,
       last_name: user.last_name,
+      country: user.country,
+      birthday: user.birthday,
+      gender: user.gender,
       admin: false
     });
     return {
@@ -47,20 +51,16 @@ export class UserService {
     };
   }
 
-  async findOneById(id: string): Promise<UserDTO | undefined> {
+  async findOneById(id: string): Promise<User | undefined> {
     return this.users.find(user => user.id === id);
   }
 
-  async findOneByEmail(email: string): Promise<UserDTO | undefined> {
-    return this.users.find(user => user.email === email);
-  }
-
-  async update(id: string, data: UserDTO) {
+  async update(id: string, data: User) {
     let user = this.users.find(user => user.id === id);
     return; // Update
   }
 
-  async delete(id: string): Promise<MessageDTO> {
+  async delete(id: string): Promise<Message> {
     this.users.splice(this.users.findIndex(user => user.id === id), 1);
     return {
       message: 'Your account is successfully deleted.',

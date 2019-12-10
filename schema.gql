@@ -3,71 +3,82 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Category {
+  id: ID!
+  name: String!
+}
+
+type Comment {
+  id: ID!
+  user: User!
+  movie: Movie!
+  created_at: DateTime!
+  comment: String!
+  updated_at: DateTime
+  rating: Float
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
 scalar DateTime
 
-type MediaDTO {
+type Favorites {
   id: ID!
-  title: String!
-  info: String!
-  created_at: DateTime!
-  updated_at: DateTime!
-  type: String!
-  length: Float!
-  categorie: String!
+  user: User!
+  movie: Movie!
 }
 
-type MediaPersonDTO {
-  id_media: ID!
-  id_person: ID!
-  role: String!
-}
-
-type MessageDTO {
+type Message {
   message: String!
   type: String!
   status: Int!
 }
 
-type PersonDTO {
+type Movie {
+  id: ID!
+  title: String!
+  release: DateTime
+  duration: Float
+  synopsis: String
+  category: Category
+  producer: Person
+  director: Person
+  actors: [Person!]
+}
+
+type Mutation {
+  addUser(input: UserInput!): Message!
+}
+
+type Person {
   id: ID!
   firstname: String!
   lastname: String!
-  birthdate: DateTime!
+  birthday: DateTime
+  movies: [Movie!]
 }
 
 type Query {
-  users: [UserDTO!]!
-  findUser(id: String!): UserDTO!
-  deleteUser(id: String!): MessageDTO!
+  users: [User!]!
+  findUser(id: String!): User!
+  deleteUser(id: String!): Message!
 }
 
-type UserDTO {
+type User {
   id: ID!
-  firstname: String!
-  lastname: String!
-  email: String!
-  country: String!
-  created_at: DateTime!
-  updated_at: DateTime!
-  password: String!
-  birthdate: DateTime!
-  gender: String!
-  auth: String!
-  ip_address: String!
-  last_connexion: DateTime!
+  first_name: String!
+  last_name: String!
   admin: Boolean!
-  os: String!
-  os_version: String!
+  country: String
+  birthday: DateTime
+  gender: String
 }
 
-type UserMediaDTO {
-  user_id: ID!
-  media_id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
-  rating: Float!
-  comment: String!
+input UserInput {
+  first_name: String!
+  last_name: String!
+  country: String!
+  birthday: DateTime!
+  gender: String!
 }

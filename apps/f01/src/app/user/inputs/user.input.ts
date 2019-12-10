@@ -3,13 +3,13 @@ import { InputType, Field } from 'type-graphql';
 @InputType()
 export class UserInput {
   @Field()
-  readonly id: string;
+  readonly first_name: string;
   @Field()
-  readonly firstname: string;
+  readonly last_name: string;
   @Field()
-  readonly lastname: string;
+  readonly country?: string;
   @Field()
-  readonly email: string;
+  readonly birthday?: Date;
   @Field()
-  readonly password: string;
+  readonly gender?: string;
 }
