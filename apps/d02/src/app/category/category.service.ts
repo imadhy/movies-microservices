@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { CategoryEntity } from './category.entity';
+import { CategoryEntity } from '../../../../../libs/dto/src/lib/d02/category.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MovieDTO } from '@movie-ms/dto';
 
 @Injectable()
 export class CategoryService {
@@ -15,7 +14,7 @@ export class CategoryService {
     return await this.CategoryRepository.find();
   }
 
-  async create(data: MovieDTO) {
+  async create(data: CategoryEntity) {
     const order = await this.CategoryRepository.create(data);
     await this.CategoryRepository.save(order);
     return order;
