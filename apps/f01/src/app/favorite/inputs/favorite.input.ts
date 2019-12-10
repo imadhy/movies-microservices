@@ -4,4 +4,8 @@ import { InputType, Field } from 'type-graphql';
 export class FavoriteInput {
   @Field()
   readonly id: string;
+  @Field()
+  readonly id_user: string;
+  @Field()
+  readonly id_media: string;
 }

@@ -8,6 +8,11 @@ export class FavoriteService {
 
   constructor() {
     this.favorites = [
+      {
+        id: '0',
+        id_user: 'shaggy',
+        id_media: 'eva'
+      }
     ];
   }
 
@@ -17,10 +22,12 @@ export class FavoriteService {
 
   async create(favorite: FavoriteDTO): Promise<MessageDTO> {
     this.favorites.push({
-      id: uuid()
+      id: uuid(),
+      id_user: '',
+      id_media: ''
     });
     return {
-      message: 'Your account is successfully created.',
+      message: 'Your favorite is successfully created.',
       type: 'Info',
       status: 201
     };
@@ -38,7 +45,7 @@ export class FavoriteService {
   async delete(id: string): Promise<MessageDTO> {
     this.favorites.splice(this.favorites.findIndex(favorite => favorite.id === id), 1);
     return {
-      message: 'Your account is successfully deleted.',
+      message: 'Your favorite is successfully deleted.',
       type: 'Info',
       status: 200
     };

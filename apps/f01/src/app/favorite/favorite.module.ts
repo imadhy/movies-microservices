@@ -6,4 +6,4 @@ import { FavoriteResolver } from './favorite.resolver';
   providers: [FavoriteService, FavoriteResolver],
   exports: [FavoriteService]
 })
-export class UserModule {}
+export class FavoriteModule {}
