@@ -5,34 +5,25 @@ import {
   Args,
 } from '@nestjs/graphql';
 import { FavoriteService } from './favorite.service';
-import { MessageDTO, FavoriteDTO } from '@movie-ms/dto';
+import { FavoriteInput } from './inputs/favorite.input';
+import { FavoriteDTO } from '@movie-ms/dto';
 
 @Resolver('Favorite')
 export class FavoriteResolver {
   constructor(private readonly favoriteService: FavoriteService) {}
 
-  // @Mutation(() => MessageDTO) // Create Favorite
-  // async signup(@Args('input') input: FavoriteDTO) {
-  //   return this.favoriteService.create(input);
-  // }
-
-  @Query(() => [FavoriteDTO]) // Find all favorite
-  async favorites() {
-    return this.favoriteService.findAll();
+  @Mutation(() => FavoriteDTO) // Create Favorite
+  async addFavorite(@Args('input') input: FavoriteInput) {
+    return this.favoriteService.addFavorite(input);
   }
 
-  @Query(() => FavoriteDTO) // Find one favorite by id
-  async findFavorite(@Args('id') id: string) {
-    return await this.favoriteService.findOneById(id);
+  @Query(() => [FavoriteDTO]) // Find all favorites by user id
+  async getFavoriteByUserId(@Args('id_user') id_user: string) {
+    return this.favoriteService.getFavoriteByUserId(id_user);
   }
 
-  // @Mutation(() => FavoriteDTO)
-  // async updateFavorite(@Args('id') id: string, body: UpdateFavoriteDto) {
-  //     return this.favoriteService.update(id, body);
-  // }
-
-  @Query(() => MessageDTO) // Delete favorite by id
-  async deleteFavorite(@Args('id') id: string) {
-    return this.favoriteService.delete(id);
+  @Mutation(() => Boolean) // Delete favorite
+  async deleteFavorite(@Args('input') input: FavoriteInput) {
+    return this.favoriteService.deleteFavorite(input);
   }
 }

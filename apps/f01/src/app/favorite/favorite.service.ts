@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { FavoriteDTO, MessageDTO } from '@movie-ms/dto';
+import { FavoriteDTO } from '@movie-ms/dto';
+import { FavoriteInput } from './inputs/favorite.input';
 import { v4 as uuid } from 'uuid';
 
 @Injectable()
@@ -16,38 +17,26 @@ export class FavoriteService {
     ];
   }
 
-  async findAll(): Promise<FavoriteDTO[]> {
-    return this.favorites;
-  }
-
-  async create(favorite: FavoriteDTO): Promise<MessageDTO> {
-    this.favorites.push({
+  async addFavorite(favorite: FavoriteInput): Promise<FavoriteDTO> {
+    var fav: FavoriteDTO = {
       id: uuid(),
-      id_user: '',
-      id_media: ''
-    });
-    return {
-      message: 'Your favorite is successfully created.',
-      type: 'Info',
-      status: 201
-    };
+      id_user: favorite.id_user,
+      id_media: favorite.id_media
+    }
+    this.favorites.push(fav);
+    return fav;
   }
 
-  async findOneById(id: string): Promise<FavoriteDTO | undefined> {
-    return this.favorites.find(favorite => favorite.id === id);
+  async getFavoriteByUserId(id_user: string): Promise<FavoriteDTO[]> {
+    return this.favorites.filter(favorite => favorite.id_user === id_user);
   }
 
-  async update(id: string, data: FavoriteDTO) {
-    let favorite = this.favorites.find(favorite => favorite.id === id);
-    return; // Update
-  }
-
-  async delete(id: string): Promise<MessageDTO> {
-    this.favorites.splice(this.favorites.findIndex(favorite => favorite.id === id), 1);
-    return {
-      message: 'Your favorite is successfully deleted.',
-      type: 'Info',
-      status: 200
-    };
+  async deleteFavorite(favorite: FavoriteInput): Promise<boolean> {
+    var favIndex = this.favorites.findIndex(fav => fav.id_user === favorite.id_user && fav.id_media === favorite.id_media);
+    if (favIndex !== -1) {
+      this.favorites.splice(favIndex, 1);
+      return true;
+    }
+    return false;
   }
 }
