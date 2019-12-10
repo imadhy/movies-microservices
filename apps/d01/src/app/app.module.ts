@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import { User } from './user.entity';
-import { UserModule } from './user.module';
+import { User } from '../../../../libs/dto/src/lib/d01/user.entity';
+import { Comment } from '../../../../libs/dto/src/lib/d01/comment.entity';
+import { Favorite } from '../../../../libs/dto/src/lib/d01/favorite.entity';
+import { UserModule } from './Services/user.module';
 
 @Module({
   imports: [
@@ -10,14 +12,14 @@ import { UserModule } from './user.module';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'postgres',
-      password: 'root',
-      database: 'nestproject',
-      entities: [User],
-      synchronize: true,
+      username: 'admin',
+      password: 'admin',
+      database: 'postgres',
+      entities: [User, Comment, Favorite],
+      synchronize: true
     }),
     UserModule
-  ],
+  ]
 })
 export class AppModule {
   constructor(private readonly connection: Connection) {}
