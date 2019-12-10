@@ -1,52 +1,44 @@
 import { Injectable } from '@nestjs/common';
-import { UserDTO, MessageDTO } from '@movie-ms/dto';
+import { User, Message } from '@movie-ms/dto';
 import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class UserService {
-  private readonly users: UserDTO[];
+  private readonly users: User[];
 
   constructor() {
     this.users = [
       {
         id: 'b09d5d6f-3fe2-4bd9-8946-0880b29e173f',
-        firstname: 'john',
-        lastname: 'changeme',
-        email: 'john.changeme@xyz.com',
-        password: 'nuggets',
-        auth: 'user'
+        first_name: 'john',
+        last_name: 'changeme',
+        admin: false
       },
       {
         id: '40b67496-b180-4046-ade0-76511bdc193c',
-        firstname: 'chris',
-        lastname: 'secret',
-        email: 'chris.secret@xyz.com',
-        password: 'nuggets',
-        auth: 'user'
+        first_name: 'chris',
+        last_name: 'secret',
+        admin: false
       },
       {
         id: '2d9662ca-31e6-4229-9e22-ea5f37820853',
-        firstname: 'maria',
-        lastname: 'guess',
-        email: 'maria.guess@xyz.com',
-        password: 'nuggets',
-        auth: 'admin'
+        first_name: 'maria',
+        last_name: 'guess',
+        admin: true
       }
     ];
   }
 
-  async findAll(): Promise<UserDTO[]> {
+  async findAll(): Promise<User[]> {
     return this.users;
   }
 
-  async create(user: UserDTO): Promise<MessageDTO> {
+  async create(user: User): Promise<Message> {
     this.users.push({
       id: uuid(),
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
-      password: user.password,
-      auth: 'user'
+      first_name: user.first_name,
+      last_name: user.last_name,
+      admin: false
     });
     return {
       message: 'Your account is successfully created.',
