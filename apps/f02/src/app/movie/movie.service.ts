@@ -38,7 +38,7 @@ export class MovieService {
 
   // Retrieve User By Id
   async getMovieById(id: string): Promise<Movie | undefined> {
-    return this.movies.find(Movie => Movie.id === id);
+    return this.movies.find(movie => movie.id === id);
   }
 
   // Retrieve All Users
