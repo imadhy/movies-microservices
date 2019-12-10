@@ -1,16 +1,14 @@
 import { Injectable } from '@nestjs/common';
 
-export type Media = any;
-export type Playlist = any;
+export type Movie = any;
 
 @Injectable()
 export class MediaService {
-  private readonly medias: Media[];
-  private readonly playlist: Playlist[];
+  private readonly movies: Movie[];
 
-  //Static Medias
+  //Static Movies
   constructor() {
-    this.medias = [
+    this.movies = [
       {
         id: '00c8ade3-b1e2-4362-86da-80d841fea5be',
         category_id: 1,
@@ -39,73 +37,59 @@ export class MediaService {
   }
 
   // Retrieve User By Id
-  async getMediaById(id: string): Promise<Media | undefined> {
-    return this.medias.find(media => media.id === id);
+  async getMovieById(id: string): Promise<Movie | undefined> {
+    return this.movies.find(Movie => Movie.id === id);
   }
 
   // Retrieve All Users
-  async getAllMedias(): Promise<Media[] | undefined> {
-    return this.medias;
+  async getAllMovies(): Promise<Movie[] | undefined> {
+    return this.movies;
   }
 
-  // Retrieve Media Creation Date
-  async getMediaCreationDate(id: string): Promise<Date | undefined> {
-    return this.medias.find(media => media.id === id).createdAt;
+  // Retrieve Movie Creation Date
+  async getMovieCreationDate(id: string): Promise<Date | undefined> {
+    return this.movies.find(movie => movie.id === id).createdAt;
   }
 
   // Retrieve All Users
   async getUpdateDate(id: string): Promise<Date | undefined> {
-    return this.medias.find(media => media.id === id).updatedAt;
+    return this.movies.find(movie => movie.id === id).updatedAt;
   }
 
-  // Retrieve Media Type
-  async getMediaLength(id: string): Promise<number | undefined> {
-    return this.medias.find(media => media.id === id).length;
+  // Retrieve Movie Type
+  async getMovieLength(id: string): Promise<number | undefined> {
+    return this.movies.find(movie => movie.id === id).length;
   }
 
-  // Retrieve Media Category
-  async getMediaCategory(id: string): Promise<string | undefined> {
-    return this.medias.find(media => media.id === id).category;
+  // Retrieve Movie Category
+  async getMovieCategory(id: string): Promise<string | undefined> {
+    return this.movies.find(movie => movie.id === id).category;
   }
 
-  // Add Media
-  async addMedia(media: Media): Promise<Media | undefined> {
-    this.medias.push(media);
-    return media;
+  // Add Movie
+  async addMovie(movie: Movie): Promise<Movie | undefined> {
+    this.movies.push(movie);
+    return movie;
   }
 
-  // Update Media By Id
-  async updateMediaById(id: string, media: Media): Promise<Media | undefined> {
-    let index = this.medias.indexOf(this.medias.find(media => media.id === id));
-    this.medias[index] = media;
-    return media;
+  // Update Movie By Id
+  async updateMovieById(id: string, movie: Movie): Promise<Movie | undefined> {
+    let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
+    this.movies[index] = movie;
+    return movie;
   }
 
-  // Delete Media By Id
-  async deleteMediaById(id: string): Promise<string | undefined> {
-    let index = this.medias.indexOf(this.medias.find(media => media.id === id));
-    this.medias.splice(index, 1);
-    return 'Media Deleted';
+  // Delete Movie By Id
+  async deleteMovieById(id: string): Promise<string | undefined> {
+    let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
+    this.movies.splice(index, 1);
+    return 'Movie Deleted';
   }
 
-  // Like Media
-  async likeMedia(id: string): Promise<string | undefined> {
-    // Like Media
+  // Unlike Movie
+  async commentMovie(id: string, comment: string): Promise<string | undefined> {
+    // Comment Movie
 
-    return 'Media Liked';
-  }
-
-  // Unlike Media
-  async unlikeMedia(id: string): Promise<string | undefined> {
-    // Unlike Media
-
-    return 'Media Unliked';
-  }
-
-  // Unlike Media
-  async commentMedia(id: string, comment: string): Promise<string | undefined> {
-    // Comment Media
-
-    return 'Media Commented';
+    return 'Movie Commented';
   }
 }

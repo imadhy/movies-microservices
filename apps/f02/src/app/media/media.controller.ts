@@ -17,18 +17,18 @@ export class MediaController {
   // Get All Medias
   @Get('')
   getMedias() {
-    return this.mediaService.getAllMedias();
+    return this.mediaService.getAllMovies();
   }
 
   // Get Media By Id
   @Get(':id')
   getMediaById(@Param('id') id: string) {
-    return this.mediaService.getMediaById(id);
+    return this.mediaService.getMovieById(id);
   }
 
   // Get Media category
   @Get(':id/category')
   getMediaCategory(@Param('id') id: string) {
-    return this.mediaService.getMediaCategory(id);
+    return this.mediaService.getMovieCategory(id);
   }
 }
