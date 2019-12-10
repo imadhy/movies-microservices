@@ -2,11 +2,13 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
 import { UserModule } from './user/user.module';
+import { CommentModule } from './comment/comment.module';
 
 
 @Module({
   imports: [
     UserModule,
+    CommentModule,
     GraphQLModule.forRoot({
       context: ({ req }) => ({ req }),
       autoSchemaFile: 'schema.gql'

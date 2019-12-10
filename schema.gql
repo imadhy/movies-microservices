@@ -3,6 +3,17 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type CommentDTO {
+  id: ID!
+  prop1: String!
+  prop2: String!
+}
+
+input CommentInput {
+  prop1: String!
+  prop2: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -31,6 +42,10 @@ type MessageDTO {
   status: Int!
 }
 
+type Mutation {
+  addcomment(input: CommentInput!): MessageDTO!
+}
+
 type PersonDTO {
   id: ID!
   firstname: String!
@@ -42,6 +57,9 @@ type Query {
   users: [UserDTO!]!
   findUser(id: String!): UserDTO!
   deleteUser(id: String!): MessageDTO!
+  comments: [CommentDTO!]!
+  findComment(id: String!): CommentDTO!
+  deleteComment(id: String!): MessageDTO!
 }
 
 type UserDTO {
