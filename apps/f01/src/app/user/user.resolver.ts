@@ -11,10 +11,10 @@ import { MessageDTO, UserDTO } from '@movie-ms/dto';
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
   
-  @Mutation(() => MessageDTO) // Create User / Signup
-  async signup(@Args('input') input: UserDTO) {
-    return this.userService.create(input);
-  }
+  // @Mutation(() => MessageDTO) // Create User / Signup
+  // async signup(@Args('input') input: UserDTO) {
+  //   return this.userService.create(input);
+  // }
 
   @Query(() => [UserDTO]) // Find all user in database
   async users() {
