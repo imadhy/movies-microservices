@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MediaController } from './media.controller';
+import { MediaController } from './movie.controller';
 
 describe('Media Controller', () => {
   let controller: MediaController;

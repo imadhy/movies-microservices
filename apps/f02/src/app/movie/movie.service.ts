@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 export type Movie = any;
 
 @Injectable()
-export class MediaService {
+export class MovieService {
   private readonly movies: Movie[];
 
   //Static Movies

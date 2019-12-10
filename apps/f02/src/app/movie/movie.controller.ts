@@ -6,29 +6,29 @@ import {
   Response,
   Param
 } from '@nestjs/common';
-import { MediaService } from './media.service';
+import { MovieService } from './movie.service';
 
 export type Media = any;
 
 @Controller('media')
 export class MediaController {
-  constructor(private readonly mediaService: MediaService) {}
+  constructor(private readonly movieservice: MovieService) {}
 
   // Get All Medias
   @Get('')
   getMedias() {
-    return this.mediaService.getAllMovies();
+    return this.movieservice.getAllMovies();
   }
 
   // Get Media By Id
   @Get(':id')
   getMediaById(@Param('id') id: string) {
-    return this.mediaService.getMovieById(id);
+    return this.movieservice.getMovieById(id);
   }
 
   // Get Media category
   @Get(':id/category')
   getMediaCategory(@Param('id') id: string) {
-    return this.mediaService.getMovieCategory(id);
+    return this.movieservice.getMovieCategory(id);
   }
 }
