@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { UserDTO, MessageDTO } from '@movie-ms/dto';
-import { SignupInput } from './inputs/signup.input';
 import { v4 as uuid } from 'uuid';
 
 @Injectable()
@@ -40,16 +39,15 @@ export class UserService {
     return this.users;
   }
 
-  async create(signin: SignupInput): Promise<MessageDTO> {
-    let user: UserDTO = {
+  async create(user: UserDTO): Promise<MessageDTO> {
+    this.users.push({
       id: uuid(),
-      firstname: signin.firstname,
-      lastname: signin.lastname,
-      email: signin.email,
-      password: signin.password,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      email: user.email,
+      password: user.password,
       auth: 'user'
-    };
-    this.users.push(user);
+    });
     return {
       message: 'Your account is successfully created.',
       type: 'Info',
