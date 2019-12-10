@@ -1,1 +1,1 @@
-export * from './lib/movie.dto';
+export * from './lib/d02/movie.entity';

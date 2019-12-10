@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { MovieEntity } from './movie.entity';
+import { MovieEntity } from '@movie-ms/dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MovieDTO } from '@movie-ms/dto';
 
 @Injectable()
 export class MovieService {
@@ -15,7 +14,7 @@ export class MovieService {
     return await this.MovieRepository.find();
   }
 
-  async create(data: MovieDTO) {
+  async create(data: MovieEntity) {
     const order = await this.MovieRepository.create(data);
     await this.MovieRepository.save(order);
     return order;
@@ -25,7 +24,7 @@ export class MovieService {
     return await this.MovieRepository.findOne({ where: { id } });
   }
 
-  async update(id: string, data: Partial<MovieDTO>) {
+  async update(id: string, data: Partial<MovieEntity>) {
     return await this.MovieRepository.update({ id }, data);
   }
 
