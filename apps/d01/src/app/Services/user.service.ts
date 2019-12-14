@@ -13,4 +13,8 @@ export class UserService {
   findAll(): Promise<User[]> {
     return this.userRepo.query('SELECT * FROM users');
   }
+
+  async deleteByID(id) {
+    await this.userRepo.query('DELETE FROM users WHERE id = $1', [id]);
+  }
 }
