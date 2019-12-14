@@ -1,18 +1,17 @@
 import { Controller, Get, Delete, Param } from '@nestjs/common';
 import { UserService } from '../Services/user.service';
 
-@Controller()
+@Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('user/get/all')
-  getData() {
+  @Get('get/all')
+  getAll() {
     return this.userService.findAll();
   }
 
-  @Delete('user/delete/:id')
-  async findOne(@Param('id') id) {
-    await this.userService.deleteByID(id);
-    return `User ${id} was successfully deleted`;
+  @Delete('delete/:id')
+  async deleteOne(@Param('id') id) {
+    return await this.userService.deleteByID(id);
   }
 }

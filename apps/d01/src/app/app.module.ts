@@ -5,6 +5,7 @@ import { User } from '../../../../libs/dto/src/lib/d01/user.entity';
 import { Comment } from '../../../../libs/dto/src/lib/d01/comment.entity';
 import { Favorite } from '../../../../libs/dto/src/lib/d01/favorite.entity';
 import { UserModule } from './Services/user.module';
+import { CommentModule } from './Services/comment.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { UserModule } from './Services/user.module';
       entities: [User, Comment, Favorite],
       synchronize: true
     }),
-    UserModule
+    UserModule,
+    CommentModule
   ]
 })
 export class AppModule {
