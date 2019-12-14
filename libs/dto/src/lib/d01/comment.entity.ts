@@ -10,14 +10,14 @@ import { User } from './user.entity';
 @Entity()
 export class Comment {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @OneToOne(type => User)
   @JoinColumn({ name: 'user' })
   userId: User;
 
   @Column()
-  mediaId: number;
+  mediaId: string;
 
   @Column()
   createdAt: Date;
