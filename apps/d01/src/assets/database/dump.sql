@@ -1,32 +1,4 @@
-CREATE TABLE users
-(
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    email VARCHAR(255),
-    country VARCHAR(100),
-    created_at DATE,
-    birthday DATE,
-    gender VARCHAR(100),
-    admin BOOLEAN
-);
-
-CREATE TABLE favorites
-(
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
-    media_id INTEGER
-);
-CREATE TABLE comments
-(
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
-    media_id INTEGER,
-    created_at DATE,
-    updated_at DATE,
-    rating INTEGER,
-    text VARCHAR(255)
-);
+CREATE ROLE admin WITH SUPERUSER CREATEDB CREATEROLE LOGIN ENCRYPTED PASSWORD 'admin';
 
 INSERT INTO users (first_name, last_name, email, country, created_at, birthday, gender, admin) VALUES ('valentin', 'guibert', 'valentin@superdeveloper.com', 'France', '2019-12-10', '1998-05-12', 'male', false);
 INSERT INTO users (first_name, last_name, email, country, created_at, birthday, gender, admin) VALUES ('loïc', 'bouchain', 'loïc@ferarepasser.fr', 'France', '2019-12-10', '1999-09-04', 'male', false);

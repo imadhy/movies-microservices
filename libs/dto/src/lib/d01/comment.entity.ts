@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 
-@Entity()
+@Entity({ name: 'comments' })
 export class Comment {
   @PrimaryGeneratedColumn()
   id: string;
@@ -27,9 +27,6 @@ export class Comment {
 
   @Column()
   rating: number;
-
-  @Column()
-  birthday: string;
 
   @Column({ length: 255 })
   text: string;

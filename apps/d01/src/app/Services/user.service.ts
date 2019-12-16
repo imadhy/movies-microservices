@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { User } from '../../../../../libs/dto/src/lib/d01/user.entity';
 
 @Injectable()
@@ -12,6 +12,15 @@ export class UserService {
 
   findAll(): Promise<User[]> {
     return this.userRepo.query('SELECT * FROM users');
+  }
+
+  async insert(user: User) {
+    return getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(User)
+      .values(user)
+      .execute();
   }
 
   async deleteByID(id) {
