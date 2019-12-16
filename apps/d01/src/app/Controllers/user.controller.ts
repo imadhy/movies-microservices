@@ -10,6 +10,11 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Get('get/:id')
+  getOne(@Param('id') id) {
+    return this.userService.findByID(id);
+  }
+
   @Delete('delete/:id')
   async deleteOne(@Param('id') id) {
     return await this.userService.deleteByID(id);
