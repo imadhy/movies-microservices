@@ -23,6 +23,10 @@ export class UserService {
       .execute();
   }
 
+  findByID(id) {
+    return this.userRepo.query('SELECT * FROM users WHERE id = $1', [id]);
+  }
+
   async deleteByID(id) {
     await this.userRepo.query('DELETE FROM users WHERE id = $1', [id]);
   }

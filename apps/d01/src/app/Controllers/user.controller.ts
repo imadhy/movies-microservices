@@ -11,6 +11,11 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Get('get/:id')
+  getOne(@Param('id') id) {
+    return this.userService.findByID(id);
+  }
+
   @Post()
   post(@Body() user: User) {
     return this.userService.insert(user);
