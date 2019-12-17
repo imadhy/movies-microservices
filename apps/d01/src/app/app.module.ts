@@ -6,6 +6,7 @@ import { Comment } from '../../../../libs/dto/src/lib/d01/comment.entity';
 import { Favorite } from '../../../../libs/dto/src/lib/d01/favorite.entity';
 import { UserModule } from './Services/user.module';
 import { CommentModule } from './Services/comment.module';
+import { FavoriteModule } from './Services/favorite.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { CommentModule } from './Services/comment.module';
       synchronize: true
     }),
     UserModule,
-    CommentModule
+    CommentModule,
+    FavoriteModule
   ]
 })
 export class AppModule {

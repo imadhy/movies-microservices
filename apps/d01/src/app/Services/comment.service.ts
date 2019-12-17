@@ -20,7 +20,7 @@ export class CommentService {
   findByID(id) {
     return this.commentRepo.query(
       'SELECT * FROM comments where  "mediaId" like ' + '$1' + '',
-[id]
+      [id]
     );
   }
 }
