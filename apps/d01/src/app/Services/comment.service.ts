@@ -16,6 +16,9 @@ export class CommentService {
       [commentData[0], commentData[1], id]
     );
   }
+  async deleteByID(id) {
+    await this.commentRepo.query('DELETE FROM comments WHERE id = $1', [id]);
+  }
 
   findByID(id) {
     return this.commentRepo.query(

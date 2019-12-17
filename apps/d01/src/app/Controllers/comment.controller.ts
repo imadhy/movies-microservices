@@ -14,4 +14,9 @@ export class CommentController {
   getOne(@Param('id') id) {
     return this.commentService.findByID(id);
   }
+
+  @Delete('delete/:id')
+  async deleteOne(@Param('id') id) {
+    return await this.commentService.deleteByID(id);
+  }
 }
