@@ -23,6 +23,18 @@ export class UserService {
       .execute();
   }
 
+  async update(user: User, id: string) {
+    return getConnection()
+      .createQueryBuilder()
+      .update(User)
+      .set({ first_name : user.first_name, last_name : user.last_name,
+        email: user.email, country: user.country, gender: user.gender,
+        birthday: user.birthday
+      })
+      .where("id = :id", {id})
+      .execute();
+  }
+
   findByID(id) {
     return this.userRepo.query('SELECT * FROM users WHERE id = $1', [id]);
   }
