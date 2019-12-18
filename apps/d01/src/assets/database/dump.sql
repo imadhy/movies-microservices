@@ -12,4 +12,4 @@ INSERT INTO users (first_name, last_name, email, country, created_at, birthday, 
 INSERT INTO users (first_name, last_name, email, country, created_at, birthday, gender, admin) VALUES ('leo', 'rigaudeau', 'leo@crusader.fr', 'boupere', '2019-07-07', '1998-09-13', 'male', false);
 
 INSERT INTO comments ("mediaId", "createdAt", "updatedAt", rating, text) VALUES ('1', '2019-07-07', '2019-07-08', '2', 'nul.');
-INSERT INTO favorites ("userId", "mediaId") VALUES ('1', 1);
+INSERT INTO favorites ("mediaId", "user") VALUES ('1', 1);
