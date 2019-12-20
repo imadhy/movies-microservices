@@ -1,10 +1,15 @@
-import { Controller, Get, Delete, Param, Put, Body } from '@nestjs/common';
+import { Controller, Get, Delete, Post, Param, Put, Body } from '@nestjs/common';
 import { CommentService } from '../Services/comment.service';
 import { Comment } from '../../../../../libs/dto/src/lib/d01/comment.entity';
 
 @Controller('comment')
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
+
+  @Post('post')
+  async post(@Body() commentData): Promise<any> {
+    return this.commentService.post(commentData);
+  }
 
   @Put('put/:id')
   async update(@Param('id') id, @Body() commentData): Promise<any> {

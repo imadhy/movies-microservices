@@ -10,6 +10,19 @@ export class CommentService {
     private readonly commentRepo: Repository<Comment>
   ) {}
 
+  async post(commentData) {
+    return await this.commentRepo.query(
+      'INSERT INTO comments (userId, mediaId, createdAt, updatedAt, rating, text) VALUES ($1, $2, $3, $3, $4, $5)',
+      [
+        commentData[0],
+        commentData[1],
+        commentData[2],
+        commentData[3],
+        commentData[4]
+      ]
+    );
+  }
+
   async putByID(id, commentData) {
     return await this.commentRepo.query(
       'UPDATE comments SET rating = $1, text = $2 WHERE id = $3',
