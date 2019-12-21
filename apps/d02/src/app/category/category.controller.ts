@@ -8,7 +8,7 @@ import {
   Body
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { CategoryEntity } from '../../../../../libs/dto/src/lib/d02/category.entity';
+import { CategoryEntity } from 'libs/dto/src/lib/d02/category.entity';
 
 @Controller('category')
 export class CategoryController {

@@ -10,7 +10,7 @@ import {
 import { PersonService } from './person.service';
 import { PersonEntity } from '../../../../../libs/dto/src/lib/d02/person.entity';
 
-@Controller('movie')
+@Controller('person')
 export class PersonController {
   constructor(private PersonService: PersonService) {}
 
