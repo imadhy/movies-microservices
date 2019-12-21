@@ -11,6 +11,10 @@ import { PersonEntity } from 'libs/dto/src/lib/d02/person.entity';
 import { CategoryEntity } from 'libs/dto/src/lib/d02/category.entity';
 import { MovieEntity } from 'libs/dto/src/lib/d02/movie.entity';
 import { MovieModule } from './movie/movie.module';
+import { CategoryController } from './category/category.controller';
+import { PersonController } from './person/person.controller';
+import { CategoryModule } from './category/category.module';
+import { PersonModule } from './person/person.module';
 
 @Module({
   imports: [
@@ -24,9 +28,16 @@ import { MovieModule } from './movie/movie.module';
       entities: [MovieEntity, PersonEntity, CategoryEntity],
       synchronize: true
     }),
-    MovieModule
+    MovieModule,
+    CategoryModule,
+    PersonModule
   ],
-  controllers: [AppController, MovieController],
+  controllers: [
+    AppController,
+    MovieController,
+    CategoryController,
+    PersonController
+  ],
   providers: [AppService]
 })
 export class AppModule {
