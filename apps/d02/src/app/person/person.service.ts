@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { PersonEntity } from './person.entity';
+import { PersonEntity } from '../../../../../libs/dto/src/lib/d02/person.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MovieDTO } from '@movie-ms/dto';
 
 @Injectable()
 export class PersonService {
@@ -15,7 +14,7 @@ export class PersonService {
     return await this.PersonRepository.find();
   }
 
-  async create(data: MovieDTO) {
+  async create(data) {
     const order = await this.PersonRepository.create(data);
     await this.PersonRepository.save(order);
     return order;
@@ -25,7 +24,7 @@ export class PersonService {
     return await this.PersonRepository.findOne({ where: { id } });
   }
 
-  async update(id: string, data: Partial<MovieDTO>) {
+  async update(id: string, data: Partial<PersonEntity>) {
     return await this.PersonRepository.update({ id }, data);
   }
 

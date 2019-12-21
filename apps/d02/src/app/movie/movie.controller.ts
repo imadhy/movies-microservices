@@ -1,6 +1,14 @@
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body
+} from '@nestjs/common';
 import { MovieService } from './movie.service';
-import { MovieDTO } from '@movie-ms/dto';
+import { MovieEntity } from '@movie-ms/dto';
 
 @Controller('movie')
 export class MovieController {
@@ -12,7 +20,7 @@ export class MovieController {
   }
 
   @Post()
-  createOrder(@Body() data: MovieDTO) {
+  createOrder(@Body() data) {
     return this.MovieService.create(data);
   }
 
@@ -22,7 +30,7 @@ export class MovieController {
   }
 
   @Put(':id')
-  updateOrder(@Param('id') id: string, @Body() data: Partial<MovieDTO>) {
+  updateOrder(@Param('id') id: string, @Body() data: Partial<MovieEntity>) {
     return this.MovieService.update(id, data);
   }
 

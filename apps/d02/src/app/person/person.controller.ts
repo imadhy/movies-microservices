@@ -8,7 +8,7 @@ import {
   Body
 } from '@nestjs/common';
 import { PersonService } from './person.service';
-import { MovieDTO } from '@movie-ms/dto';
+import { PersonEntity } from '../../../../../libs/dto/src/lib/d02/person.entity';
 
 @Controller('movie')
 export class PersonController {
@@ -20,7 +20,7 @@ export class PersonController {
   }
 
   @Post()
-  createOrder(@Body() data: MovieDTO) {
+  createOrder(@Body() data) {
     return this.PersonService.create(data);
   }
 
@@ -30,7 +30,7 @@ export class PersonController {
   }
 
   @Put(':id')
-  updateOrder(@Param('id') id: string, @Body() data: Partial<MovieDTO>) {
+  updateOrder(@Param('id') id: string, @Body() data: Partial<PersonEntity>) {
     return this.PersonService.update(id, data);
   }
 
