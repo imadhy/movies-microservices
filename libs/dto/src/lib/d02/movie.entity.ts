@@ -2,10 +2,11 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn
+  ManyToMany,
+  JoinTable
 } from 'typeorm';
-// import { CategoryEntity } from '../category/category.entity';
+import { PersonEntity } from './person.entity';
+import { CategoryEntity } from './category.entity';
 
 @Entity('Movie')
 export class MovieEntity {
@@ -13,19 +14,10 @@ export class MovieEntity {
   id: string;
 
   @Column()
-  category_id: number;
-
-  @Column()
   title: string;
 
   @Column()
   duration: number;
-
-  @Column()
-  director: number;
-
-  @Column()
-  producer: number;
 
   @Column()
   release: Date;
@@ -39,7 +31,19 @@ export class MovieEntity {
   @Column()
   updatedAt: Date;
 
-  // @ManyToOne(() => CategoryEntity, category => category.id, { primary: true })
-  // @JoinColumn({ name: 'category_id' })
-  // category: Promise<CategoryEntity>;
+  @ManyToMany(type => PersonEntity)
+  @JoinTable()
+  actors: PersonEntity[];
+
+  @ManyToMany(type => PersonEntity)
+  @JoinTable()
+  producers: PersonEntity[];
+
+  @ManyToMany(type => PersonEntity)
+  @JoinTable()
+  directors: PersonEntity[];
+
+  @ManyToMany(type => CategoryEntity)
+  @JoinTable()
+  categories: CategoryEntity[];
 }

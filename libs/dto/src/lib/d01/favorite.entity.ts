@@ -10,12 +10,12 @@ import { User } from './user.entity';
 @Entity()
 export class Favorite {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @ManyToOne(type => User)
   @JoinColumn({ name: 'user' })
   userId: User;
 
   @Column()
-  mediaId: number;
+  mediaId: string;
 }
