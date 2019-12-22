@@ -24,7 +24,7 @@ export class UserController {
     return this.userService.findByID(id);
   }
 
-  @Post()
+  @Post('post')
   post(@Body() user: User) {
     return this.userService.insert(user);
   }

@@ -8,18 +8,22 @@ import {
   Put
 } from '@nestjs/common';
 import { CommentService } from '../Services/comment.service';
+import { Comment } from '../../../../../libs/dto/src/lib/d01/comment.entity';
 
 @Controller('comment')
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Post('post')
-  async post(@Body() commentData): Promise<any> {
+  async post(@Body() commentData: Comment): Promise<any> {
     return this.commentService.post(commentData);
   }
 
   @Put('put/:id')
-  async update(@Param('id') id, @Body() commentData): Promise<any> {
+  async update(
+    @Param('id') id: string,
+    @Body() commentData: Comment
+  ): Promise<any> {
     return this.commentService.putByID(id, commentData);
   }
   @Get('get/:id')

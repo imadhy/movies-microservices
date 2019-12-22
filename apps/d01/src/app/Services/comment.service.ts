@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, getConnection } from 'typeorm';
 import { Comment } from '../../../../../libs/dto/src/lib/d01/comment.entity';
 
 @Injectable()
@@ -10,25 +10,28 @@ export class CommentService {
     private readonly commentRepo: Repository<Comment>
   ) {}
 
-  async post(commentData) {
-    return await this.commentRepo.query(
-      'INSERT INTO comments (userId, mediaId, createdAt, updatedAt, rating, text) VALUES ($1, $2, $3, $3, $4, $5)',
-      [
-        commentData[0],
-        commentData[1],
-        commentData[2],
-        commentData[3],
-        commentData[4]
-      ]
-    );
+  async post(commentData: Comment) {
+    return getConnection()
+      .createQueryBuilder()
+      .insert()
+      .into(Comment)
+      .values(commentData)
+      .execute();
   }
 
   async putByID(id, commentData) {
-    return await this.commentRepo.query(
-      'UPDATE comments SET rating = $1, text = $2 WHERE id = $3',
-      [commentData[0], commentData[1], id]
-    );
+    return getConnection()
+      .createQueryBuilder()
+      .update(Comment)
+      .set({
+        updatedAt: commentData.updatedAt,
+        rating: commentData.rating,
+        text: commentData.text
+      })
+      .where('id = :id', { id })
+      .execute();
   }
+
   async deleteByID(id) {
     await this.commentRepo.query('DELETE FROM comments WHERE id = $1', [id]);
   }
