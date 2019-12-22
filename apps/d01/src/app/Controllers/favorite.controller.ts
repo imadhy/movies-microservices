@@ -1,4 +1,4 @@
-import { Controller, Get, Delete, Param, Put, Body } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { FavoriteService } from '../Services/favorite.service';
 import { Favorite } from '../../../../../libs/dto/src/lib/d01/favorite.entity';
 
@@ -10,6 +10,11 @@ export class FavoriteController {
   @Get('get/:id')
   getOne(@Param('id') id) {
     return this.favoriteService.findByID(id);
+  }
+
+  @Post('post')
+  post(@Body() favorite: Favorite) {
+    return this.favoriteService.insert(favorite);
   }
 
   @Delete('delete/:id')

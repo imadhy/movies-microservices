@@ -33,7 +33,7 @@ export class CommentService {
     await this.commentRepo.query('DELETE FROM comments WHERE id = $1', [id]);
   }
 
-  findByID(id) {
+  async findByID(id) {
     return this.commentRepo.query(
       'SELECT * FROM comments where  "mediaId" like ' + '$1' + '',
       [id]

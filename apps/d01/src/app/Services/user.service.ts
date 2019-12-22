@@ -27,19 +27,23 @@ export class UserService {
     return getConnection()
       .createQueryBuilder()
       .update(User)
-      .set({ first_name : user.first_name, last_name : user.last_name,
-        email: user.email, country: user.country, gender: user.gender,
+      .set({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        country: user.country,
+        gender: user.gender,
         birthday: user.birthday
       })
-      .where("id = :id", {id})
+      .where('id = :id', { id })
       .execute();
   }
 
-  findByID(id) {
+  async findByID(id) {
     return this.userRepo.query('SELECT * FROM users WHERE id = $1', [id]);
   }
 
   async deleteByID(id) {
-    await this.userRepo.query('DELETE FROM users WHERE id = $1', [id]);
+    return this.userRepo.query('DELETE FROM users WHERE id = $1', [id]);
   }
 }

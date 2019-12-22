@@ -1,6 +1,13 @@
-import { Controller, Get, Delete, Post, Param, Put, Body } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put
+} from '@nestjs/common';
 import { CommentService } from '../Services/comment.service';
-import { Comment } from '../../../../../libs/dto/src/lib/d01/comment.entity';
 
 @Controller('comment')
 export class CommentController {
