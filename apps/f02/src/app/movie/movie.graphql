@@ -1,0 +1,25 @@
+scalar Date
+
+type Movie {
+  id: ID!
+  category: Int
+  title: String
+  duration: Int
+  director: Int
+  producer: Int
+  release: Date
+  synopsis: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+type Query {
+  movie(id: ID!): Movie
+  movies: [Movie]
+}
+
+# type Mutation {
+#   createMovie(movie: Movie): Movie
+#   updateMovie(id: !ID, movie: Movie): Movie
+#   deleteMovie(id: !ID): Movie
+# }
