@@ -13,7 +13,7 @@ export class MovieEntity {
   id: string;
 
   @Column()
-  category_id: number;
+  category_id: string;
 
   @Column()
   title: string;

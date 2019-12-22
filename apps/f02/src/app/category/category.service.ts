@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Category } from '../interfaces';
+import { CategoryEntity } from '../../../../../libs/dto/src/lib/d02/category.entity';
 
 @Injectable()
 export class CategoryService {
-  private readonly categories: Category[] = [
+  private readonly categories: CategoryEntity[] = [
     {
       id: '1',
       name: 'Crime'

@@ -1,5 +1,6 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
 import { PersonService } from './person.service';
+import { Person } from '../interfaces';
 
 @Resolver('Person')
 export class PersonResolver {

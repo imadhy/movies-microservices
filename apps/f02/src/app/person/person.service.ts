@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Person } from '../interfaces';
+import { PersonEntity } from '../../../../../libs/dto/src/lib/d02/person.entity';
 
 @Injectable()
 export class PersonService {
-  private readonly persons: Person[] = [
+  private readonly persons: PersonEntity[] = [
     {
       id: '1',
       name: 'Quentin Tarantino',

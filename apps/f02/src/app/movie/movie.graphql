@@ -2,11 +2,12 @@ scalar Date
 
 type Movie {
   id: ID!
-  category: Int
+  category: Category
   title: String
   duration: Int
-  director: Int
-  producer: Int
+  director: Person
+  producer: Person
+  actors: [Person]
   release: Date
   synopsis: String
   createdAt: Date
