@@ -25,4 +25,9 @@ export class AppController {
   getTopDixRateMediaByUser(): String {
     return this.appService.getTopDixRateMediaByUser();
   }
+
+  @Get('getTopDixAuthorByFavMedia')
+  getTopDixAuthorByFavMedia(): String {
+    return this.appService.getTopDixAuthorByFavMedia();
+  }
 }
