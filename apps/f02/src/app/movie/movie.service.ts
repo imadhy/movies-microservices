@@ -17,23 +17,17 @@ export class MovieService {
   }
 
   // Create Movie
-  createMovie(movie: MovieEntity): MovieEntity {
-    movie.id = `${this.movies.length + 1}`;
-    this.movies.push(movie);
-    return movie;
+  createMovie(movie: MovieEntity) {
+    return this.movieService.create(movie);
   }
 
   // Update Movie By Id
-  updateMovieById(id: string, movie: MovieEntity): MovieEntity {
-    let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
-    this.movies[index] = movie;
-    return movie;
+  updateMovieById(id: string, data: Partial<MovieEntity>) {
+    return this.movieService.update(id, data);
   }
 
   // Delete Movie By Id
-  deleteMovieById(id: string): string {
-    let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
-    this.movies.splice(index, 1);
-    return 'movie deleted';
+  deleteMovieById(id: string) {
+    return this.movieService.destroy(id);
   }
 }
