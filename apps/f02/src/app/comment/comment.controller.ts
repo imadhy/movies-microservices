@@ -22,6 +22,6 @@ export class CommentController {
   // Get Media By Id
   @Get(':comment_id')
   getCommentText(@Param('comment_id') id: number) {
-    return this.commentService.getCommentText(id);
+    // return this.commentService.getCommentText(id);
   }
 }

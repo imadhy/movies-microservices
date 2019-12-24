@@ -45,7 +45,7 @@ export class CommentService {
   }
 
   // Retrieve Comments By Movie
-  async getCommentText(comment_id: string): Promise<string | undefined> {
-    return this.comments.find(comment => comment.id == comment_id).comment;
-  }
+  // async getCommentText(comment_id: string): Promise<string | undefined> {
+  //   return this.comments.find(comment => comment.id == comment_id).comment;
+  // }
 }
