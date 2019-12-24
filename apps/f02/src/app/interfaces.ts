@@ -17,6 +17,7 @@ export interface Movie {
     duration?: number;
     director?: Person;
     producer?: Person;
+    actors?: Person[];
     release?: Date;
     synopsis?: string;
     createdAt?: Date;

@@ -1,43 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { MovieEntity } from '../../../../../libs/dto/src/lib/d02/movie.entity';
+import { MovieService as MService } from 'apps/d02/src/app/movie/movie.service';
 
 @Injectable()
 export class MovieService {
-  private readonly movies: MovieEntity[] = [
-    {
-      id: '1',
-      category_id: '2',
-      title: 'Jurassic Park',
-      duration: 127,
-      director: 1,
-      producer: 1,
-      release: new Date(),
-      synopsis: 'Le Parc jurassique',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      id: '2',
-      category_id: '1',
-      title: 'Fiction Pulpeuse',
-      duration: 136,
-      director: 2,
-      producer: 2,
-      release: new Date(),
-      synopsis: 'PAN PAN PAN PAN',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
-  ];
+  private readonly movieService: MService;
 
   // Retrieve Movie By Id
-  getMovieById(id: string): MovieEntity {
-    return this.movies.find(movie => movie.id === id);
+  getMovieById(id: string) {
+    return this.movieService.show(id);
   }
 
   // Retrieve All Movies
-  getAllMovies(): MovieEntity[] {
-    return this.movies;
+  getAllMovies() {
+    return this.movieService.showAll();
   }
 
   // Create Movie
