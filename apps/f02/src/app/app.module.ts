@@ -9,6 +9,6 @@ import { CommentModule } from './comment/comment.module';
 @Module({
   imports: [MediaModule, CommentModule],
   controllers: [AppController, MovieController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}
