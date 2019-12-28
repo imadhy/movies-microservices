@@ -1,9 +1,11 @@
 import { InputType, Field } from 'type-graphql';
+import { User } from '@movie-ms/dto';
+import { Movie } from '@movie-ms/dto';
 
 @InputType()
 export class FavoriteInput {
   @Field()
-  readonly id_user: string;
+  readonly user: User;
   @Field()
-  readonly id_media: string;
+  readonly movie: Movie;
 }
