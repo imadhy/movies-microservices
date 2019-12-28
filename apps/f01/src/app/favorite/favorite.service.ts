@@ -12,13 +12,13 @@ export class FavoriteService {
       {
         id: '0',
         user: {
-          id: 'id',
+          id: 'b09d5d6f-3fe2-4bd9-8946-0880b29e1730',
           first_name: 'samy',
           last_name: 'vera',
           admin: true
         },
         movie: {
-          id: '0',
+          id: 'b09d5d6f-3fe2-4bd9-8946-0880b29e1743',
           title: '1984'
         }
       }

@@ -6,7 +6,6 @@ import {
 } from '@nestjs/graphql';
 import { FavoriteService } from './favorite.service';
 import { FavoriteInput } from './inputs/favorite.input';
-import { DbUserInput } from './inputs/dbuser.input';
 import { Favorites } from '@movie-ms/dto';
 
 @Resolver('Favorite')
@@ -18,9 +17,9 @@ export class FavoriteResolver {
     return this.favoriteService.addFavorite(input);
   }
 
-  @Query(() => [Favorites]) // Find all favorites by user
-  async getFavoriteByUserId(@Args('input') user: DbUserInput) {
-    return this.favoriteService.getFavoriteByUserId(user.id);
+  @Query(() => [Favorites]) // Find all favorites by user id
+  async getFavoriteByUserId(@Args('id') id: string) {
+    return this.favoriteService.getFavoriteByUserId(id);
   }
 
   @Mutation(() => Boolean) // Delete favorite

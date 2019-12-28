@@ -23,6 +23,11 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
+input FavoriteInput {
+  user_id: String!
+  movie_id: String!
+}
+
 type Favorites {
   id: ID!
   user: User!
@@ -49,6 +54,8 @@ type Movie {
 
 type Mutation {
   addUser(input: UserInput!): Message!
+  addFavorite(input: FavoriteInput!): Favorites!
+  deleteFavorite(input: FavoriteInput!): Boolean!
 }
 
 type Person {
@@ -63,6 +70,7 @@ type Query {
   users: [User!]!
   getUserByUserId(id: String!): User!
   deleteUser(id: String!): Message!
+  getFavoriteByUserId(id: String!): [Favorites!]!
 }
 
 type User {

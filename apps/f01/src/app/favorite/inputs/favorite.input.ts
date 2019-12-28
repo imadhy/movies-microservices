@@ -4,8 +4,8 @@ import { Movie } from '@movie-ms/dto';
 
 @InputType()
 export class FavoriteInput {
-  @Field()
+  @Field(() => User)
   readonly user: User;
-  @Field()
+  @Field(() => Movie)
   readonly movie: Movie;
 }
