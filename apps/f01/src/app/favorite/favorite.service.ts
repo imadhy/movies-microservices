@@ -1,46 +1,42 @@
 import { Injectable } from '@nestjs/common';
-import { Favorites } from '@movie-ms/dto';
+import { FavoritesAlt } from '@movie-ms/dto';
 import { FavoriteInput } from './inputs/favorite.input';
 import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class FavoriteService {
-  private readonly favorites: Favorites[];
+  private readonly favorites: FavoritesAlt[];
 
   constructor() {
     this.favorites = [
       {
         id: '0',
-        user: {
-          id: 'b09d5d6f-3fe2-4bd9-8946-0880b29e1730',
-          first_name: 'samy',
-          last_name: 'vera',
-          admin: true
-        },
-        movie: {
-          id: 'b09d5d6f-3fe2-4bd9-8946-0880b29e1743',
-          title: '1984'
-        }
+        user_id: 'shaggy',
+        movie_id: '1984'
       }
     ];
   }
 
-  async addFavorite(favorite: FavoriteInput): Promise<Favorites> {
-    const fav: Favorites = {
+  async addFavorite(favorite: FavoriteInput): Promise<FavoritesAlt> {
+    const fav: FavoritesAlt = {
       id: uuid(),
-      user: favorite.user,
-      movie: favorite.movie
-    }
+      user_id: favorite.user_id,
+      movie_id: favorite.movie_id
+    };
+
+
     this.favorites.push(fav);
     return fav;
   }
 
-  async getFavoriteByUserId(id: string): Promise<Favorites[]> {
-    return this.favorites.filter(favorite => favorite.user.id === id);
+  async getFavoriteByUserId(user_id: string): Promise<FavoritesAlt[]> {
+    return this.favorites.filter(favorite => favorite.user_id === user_id);
   }
 
   async deleteFavorite(favorite: FavoriteInput): Promise<boolean> {
-    const favIndex = this.favorites.findIndex(fav => fav.user.id === favorite.user.id && fav.movie.id === favorite.movie.id);
+    const favIndex = this.favorites.findIndex(fav =>
+      fav.user_id === favorite.user_id && fav.movie_id === favorite.movie_id
+    );
     if (favIndex !== -1) {
       this.favorites.splice(favIndex, 1);
       return true;

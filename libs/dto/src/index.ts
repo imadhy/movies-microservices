@@ -5,3 +5,4 @@ export * from './lib/person';
 export * from './lib/movie';
 export * from './lib/user';
 export * from './lib/favorite';
+export * from './lib/favoriteAlt';
