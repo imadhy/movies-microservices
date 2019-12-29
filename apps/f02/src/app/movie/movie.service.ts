@@ -11,7 +11,7 @@ export class MovieService {
     this.movies = [
       {
         id: '00c8ade3-b1e2-4362-86da-80d841fea5be',
-        categoryId: 1,
+        categoryID: 1,
         title: 'Breaking Good',
         duration: 125,
         director: 1,
@@ -23,7 +23,7 @@ export class MovieService {
       },
       {
         id: '192533a2-f84d-44ac-9332-ab408552f66a',
-        categoryId: 2,
+        categoryID: 2,
         title: 'Fiction Pulpeuse',
         duration: 136,
         director: 2,
@@ -38,7 +38,7 @@ export class MovieService {
 
   // Retrieve User By Id
   async getMovieById(id: string): Promise<Movie | undefined> {
-    return this.movies.find(Movie => Movie.id === id);
+    return this.movies.find(movie => movie.id === id);
   }
 
   // Retrieve All Users

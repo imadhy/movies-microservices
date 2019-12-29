@@ -8,27 +8,25 @@ import {
 } from '@nestjs/common';
 import { MovieService } from './movie.service';
 
-export type Movie = any;
-
 @Controller('movie')
 export class MovieController {
-  constructor(private readonly movieService: MovieService) {}
+  constructor(private readonly movieservice: MovieService) {}
 
   // Get All Movies
   @Get('')
   getMovies() {
-    return this.movieService.getAllMovies();
+    return this.movieservice.getAllMovies();
   }
 
   // Get Movie By Id
   @Get(':id')
   getMovieById(@Param('id') id: string) {
-    return this.movieService.getMovieById(id);
+    return this.movieservice.getMovieById(id);
   }
 
   // Get Movie category
   @Get(':id/category')
   getMovieCategory(@Param('id') id: string) {
-    return this.movieService.getMovieCategory(id);
+    return this.movieservice.getMovieCategory(id);
   }
 }
