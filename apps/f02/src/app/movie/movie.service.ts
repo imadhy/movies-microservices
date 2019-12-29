@@ -11,7 +11,7 @@ export class MovieService {
     this.movies = [
       {
         id: '00c8ade3-b1e2-4362-86da-80d841fea5be',
-        category_id: 1,
+        categoryId: 1,
         title: 'Breaking Good',
         duration: 125,
         director: 1,
@@ -23,7 +23,7 @@ export class MovieService {
       },
       {
         id: '192533a2-f84d-44ac-9332-ab408552f66a',
-        category_id: 2,
+        categoryId: 2,
         title: 'Fiction Pulpeuse',
         duration: 136,
         director: 2,
@@ -80,5 +80,4 @@ export class MovieService {
     this.movies.splice(index, 1);
     return 'Movie Deleted';
   }
-
 }
