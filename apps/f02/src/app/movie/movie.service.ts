@@ -69,14 +69,18 @@ export class MovieService {
 
   // Update Movie By Id
   async updateMovieById(id: string, movie: Movie): Promise<Movie | undefined> {
-    let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
+    const index = this.movies.indexOf(
+      this.movies.find(movie => movie.id === id)
+    );
     this.movies[index] = movie;
     return movie;
   }
 
   // Delete Movie By Id
   async deleteMovieById(id: string): Promise<string | undefined> {
-    let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
+    const index = this.movies.indexOf(
+      this.movies.find(movie => movie.id === id)
+    );
     this.movies.splice(index, 1);
     return 'Movie Deleted';
   }
