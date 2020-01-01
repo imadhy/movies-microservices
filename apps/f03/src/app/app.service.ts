@@ -1,4 +1,5 @@
 import { Injectable, HttpService } from '@nestjs/common';
+import { FavByMedia } from '../model/FavByMedia';
 
 @Injectable()
 export class AppService {
@@ -15,24 +16,24 @@ export class AppService {
    */
   getNbFavByMedia(): String {
     var data = [
-      {id_user : "1", id_film : "5"},
-      {id_user : "2", id_film : "6"},
-      {id_user : "3", id_film : "5"},
-      {id_user : "4", id_film : "6"}
+      {id_user : "1", id_media : "5"},
+      {id_user : "2", id_media : "6"},
+      {id_user : "3", id_media : "5"},
+      {id_user : "4", id_media : "6"}
     ];
 
-    var nbFavByFilm: {id_film: string, nb_fav: number}[] = [];
+    var nbFavByFilm: FavByMedia[] = [];
     
     if (data != null) {
       data.forEach(elm => {
-        let film_key: number = nbFavByFilm.findIndex(film => elm.id_film == film.id_film);
+        let film_key: number = nbFavByFilm.findIndex(film => elm.id_media == film.id_media);
         if (film_key !== -1)
         {
           nbFavByFilm[film_key].nb_fav++;
         }
         else
         {
-          nbFavByFilm.push({id_film : elm.id_film, nb_fav : 1});
+          nbFavByFilm.push({id_media : elm.id_media, nb_fav : 1});
         }
       });
     }
@@ -52,14 +53,14 @@ export class AppService {
    * Récupère le top 10 des auteurs des films les plus mis en favoris
    */
   getTopDixAuthorByFavMedia(): String {
-    var data: {id_user : string, id_film : string}[] = [
-      {id_user : "1", id_film : "5"},
-      {id_user : "2", id_film : "6"},
-      {id_user : "3", id_film : "5"},
-      {id_user : "4", id_film : "6"}
+    var data: {id_user : string, id_media : string}[] = [
+      {id_user : "1", id_media : "5"},
+      {id_user : "2", id_media : "6"},
+      {id_user : "3", id_media : "5"},
+      {id_user : "4", id_media : "6"}
     ];
 
-    let nbFavByFilm: {id_film: string, nb_fav: number}[] = this.countElement(data);
+    let nbFavByFilm: FavByMedia[] = this.countElement(data);
 
     var authArray: {auth_id: string, nb_fav: number}[] = [];
 
@@ -67,7 +68,7 @@ export class AppService {
       var authArrayTemp: {auth_id: string, nb_fav: number}[] = [];
 
       nbFavByFilm.forEach(favElmt => {
-        let auth = this.callApi("https://api/getAuth/"+favElmt.id_film);
+        let auth = this.callApi("https://api/getAuth/"+favElmt.id_media);
         console.log("erreur ligne 66 auth est vide car ça call null part");
         // authArrayTemp.push({auth_id: auth["id"], nb_fav: favElmt.nb_fav});
       });
@@ -86,20 +87,20 @@ export class AppService {
    * Retourne un tableau composé de l'id du media ainsi que son nombre total de favoris
    * @param data tableau composé de l'id de l'utilisateur et d'un de ses films favoris
    */
-  countElement(data: {id_user : string, id_film : string}[]): {id_film: string, nb_fav: number}[]{
+  countElement(data: {id_user : string, id_media : string}[]): FavByMedia[]{
 
-    var countArray: {id_film: string, nb_fav: number}[] = [];
+    var countArray: FavByMedia[] = [];
 
     if (data != null) {
       data.forEach(dataElmt => {
-        let count_key: number = countArray.findIndex(countElmt => dataElmt.id_film == countElmt.id_film);
+        let count_key: number = countArray.findIndex(countElmt => dataElmt.id_media == countElmt.id_media);
         if (count_key !== -1)
         {
           countArray[count_key].nb_fav++;
         }
         else
         {
-          countArray.push({id_film : dataElmt.id_film, nb_fav : 1});
+          countArray.push({id_media : dataElmt.id_media, nb_fav : 1});
         }
       });
     }
