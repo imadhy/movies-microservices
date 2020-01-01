@@ -1,5 +1,6 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import { FavByMedia } from '../model/FavByMedia';
+import { FavByAuthor } from '../model/FavByAuthor';
 
 @Injectable()
 export class AppService {
@@ -62,10 +63,10 @@ export class AppService {
 
     let nbFavByFilm: FavByMedia[] = this.countElement(data);
 
-    var authArray: {auth_id: string, nb_fav: number}[] = [];
+    var authArray: FavByAuthor[] = [];
 
     if (nbFavByFilm !== null) {
-      var authArrayTemp: {auth_id: string, nb_fav: number}[] = [];
+      var authArrayTemp: FavByAuthor[] = [];
 
       nbFavByFilm.forEach(favElmt => {
         let auth = this.callApi("https://api/getAuth/"+favElmt.id_media);
