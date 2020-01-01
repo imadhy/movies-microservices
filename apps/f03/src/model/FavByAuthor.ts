@@ -1,4 +1,4 @@
 export class FavByAuthor {
-    auth_id: string;
-    nb_fav: number;
+  auth_id: string;
+  nb_fav: number;
 }

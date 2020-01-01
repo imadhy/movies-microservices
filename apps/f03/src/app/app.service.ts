@@ -43,7 +43,7 @@ export class AppService {
   /**
    * Récupère le top 10 des films les mieux notés pour un utilisateur donné
    */
-  getTopDixRateMediaByUser(id_user: string): String {
+  getTopDixRateMediaByUser(): String {
     var data: { id_film: string; rate_film: string }[] = [
       { id_film: '5', rate_film: '5' },
       { id_film: '6', rate_film: '4' },
