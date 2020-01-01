@@ -49,7 +49,8 @@ export class AppService {
       { id_media: '5', rate_media: '5' },
       { id_media: '6', rate_media: '4' },
       { id_media: '7', rate_media: '5' },
-      { id_media: '8', rate_media: '2' }
+      { id_media: '8', rate_media: '2' },
+      { id_media: '3', rate_media: '1' },
     ];
 
     let mediabyRate: MediaByRate[] = [];
@@ -57,11 +58,11 @@ export class AppService {
     if (data !== null) {
       data.sort((obj1, obj2) => {
         if (obj1.rate_media > obj2.rate_media) {
-          return 1;
+          return -1;
         }
 
         if (obj1.rate_media < obj2.rate_media) {
-          return -1;
+          return 1;
         }
 
         return 0;
