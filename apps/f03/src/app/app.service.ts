@@ -1,6 +1,7 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import { FavByMedia } from '../model/FavByMedia';
 import { FavByAuthor } from '../model/FavByAuthor';
+import { MediaByRate } from '../model/MediaByRate';
 
 @Injectable()
 export class AppService {
@@ -44,22 +45,22 @@ export class AppService {
    * Récupère le top 10 des films les mieux notés pour un utilisateur donné
    */
   getTopDixRateMediaByUser(): String {
-    var data: { id_film: string; rate_film: string }[] = [
-      { id_film: '5', rate_film: '5' },
-      { id_film: '6', rate_film: '4' },
-      { id_film: '7', rate_film: '5' },
-      { id_film: '8', rate_film: '2' }
+    var data: { id_media: string; rate_media: string }[] = [
+      { id_media: '5', rate_media: '5' },
+      { id_media: '6', rate_media: '4' },
+      { id_media: '7', rate_media: '5' },
+      { id_media: '8', rate_media: '2' }
     ];
 
-    let filmbyRate: { id_film: string; rate_film: string }[] = [];
+    let mediabyRate: MediaByRate[] = [];
 
     if (data !== null) {
       data.sort((obj1, obj2) => {
-        if (obj1.rate_film > obj2.rate_film) {
+        if (obj1.rate_media > obj2.rate_media) {
           return 1;
         }
 
-        if (obj1.rate_film < obj2.rate_film) {
+        if (obj1.rate_media < obj2.rate_media) {
           return -1;
         }
 
@@ -67,11 +68,11 @@ export class AppService {
       });
 
       for (let i = 0; i < 10; i++) {
-        filmbyRate[i] = data[i];
+        mediabyRate[i] = data[i];
       }
     }
 
-    return JSON.stringify(filmbyRate);
+    return JSON.stringify(mediabyRate);
   }
 
   getCommentByMedia(): String {
