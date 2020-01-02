@@ -9,11 +9,15 @@ export class User {
   @Field()
   readonly last_name: string;
   @Field()
+  readonly email: string;
+  @Field()
+  readonly created_at: string;
+  @Field()
   readonly admin: boolean;
   @Field({ nullable: true })
   readonly country?: string;
   @Field(() => Date, { nullable: true })
-  readonly birthday?: Date;
+  readonly birthday?: string;
   @Field({ nullable: true })
   readonly gender?: string;
 }

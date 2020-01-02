@@ -18,7 +18,7 @@ export class UserResolver {
 
   @Query(() => [User]) // Find all user in database
   async users() {
-    return this.userService.findAll();
+    return await this.userService.findAll();
   }
 
   @Query(() => User) // Find one user by id
