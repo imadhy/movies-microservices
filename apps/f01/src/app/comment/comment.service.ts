@@ -37,10 +37,10 @@ export class CommentService {
     return this.comments.find(comment => comment.id === id);
   }
 
-  async update(id: string, data: Comment) {
-    let comment = this.comments.find(comment => comment.id === id);
-    return; // Update
-  }
+  // async update(id: string, data: Comment) {
+  //   let comment = this.comments.find(comment => comment.id === id);
+  //   return; // Update
+  // }
 
   async delete(id: string): Promise<Message> {
     this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1);
