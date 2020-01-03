@@ -1,5 +1,5 @@
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Movie } from './movie';
+// import { Movie } from './movie';
 
 @ObjectType()
 export class Person {
@@ -9,8 +9,8 @@ export class Person {
   readonly firstname: string;
   @Field()
   readonly lastname: string;
-  @Field(() => Date, { nullable: true })
-  readonly birthday?: Date;
-  @Field(() => [Movie], { nullable: true })
-  readonly movies?: Movie[];
+  // @Field(() => Date, { nullable: true })
+  // readonly birthday?: Date;
+  // @Field(() => [Movie], { nullable: true })
+  // readonly movies?: Movie[];
 }

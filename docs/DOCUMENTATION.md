@@ -33,7 +33,6 @@ Si vous avez des besoins, ou des problèmes, n’hésitez pas à créer des issu
 #### D01
 
 **Comment**
-
 ```JavaScript
 {
   id: number;
@@ -47,7 +46,6 @@ Si vous avez des besoins, ou des problèmes, n’hésitez pas à créer des issu
 ```
 
 **User**
-
 ```TypeScript
 {
   id: number;
@@ -74,7 +72,6 @@ Si vous avez des besoins, ou des problèmes, n’hésitez pas à créer des issu
 #### D02
 
 **Movie**
-
 ```TypeScript
 {
   id: number;
@@ -91,7 +88,6 @@ Si vous avez des besoins, ou des problèmes, n’hésitez pas à créer des issu
 ```
 
 **Person**
-
 ```TypeScript
 {
   id: number;
@@ -101,7 +97,6 @@ Si vous avez des besoins, ou des problèmes, n’hésitez pas à créer des issu
 ```
 
 **Category**
-
 ```TypeScript
 {
   id: number;

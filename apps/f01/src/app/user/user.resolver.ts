@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { Message, User } from '@movie-ms/dto';
 import { UserInput } from './inputs/user.input';
+
 @Resolver('User')
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
