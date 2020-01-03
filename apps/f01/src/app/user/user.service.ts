@@ -33,7 +33,7 @@ export class UserService {
 
   async findAll(): Promise<Observable<AxiosResponse<User[]>>> {
     return this.http
-      .get('http://localhost:3333/api/user/get/all')
+      .get('http://localhost:3003/api/user/get/all')
       .toPromise()
       .then(res => {
         return res.data;
@@ -43,9 +43,9 @@ export class UserService {
       });
   }
 
-  async addUser(user: UserInput): Promise<Observable<AxiosResponse<User[]>>> {
-    return this.http
-      .post('http://localhost:3333/api/user/post', user)
+  async addUser(user: UserInput): Promise<Message> {
+    this.http
+      .post('http://localhost:3003/api/user/post', user)
       .toPromise()
       .then(res => {
         return res.data;
@@ -53,13 +53,18 @@ export class UserService {
       .catch(err => {
         return err;
       });
+    return {
+      message: 'Your account is successfully created.',
+      type: 'Info',
+      status: 200
+    };
   }
 
   async getUserByUserId(
     id: string
   ): Promise<Observable<AxiosResponse<User[]>>> {
     return this.http
-      .get('http://localhost:3333/api/user/get/' + id)
+      .get('http://localhost:3003/api/user/get/' + id)
       .toPromise()
       .then(res => {
         return res.data;
@@ -70,7 +75,15 @@ export class UserService {
   }
 
   async deleteUser(id: string): Promise<Message> {
-    this.users.splice(this.users.findIndex(user => user.id === id), 1);
+    this.http
+      .delete('http://localhost:3003/api/user/delete/' + id)
+      .toPromise()
+      .then(res => {
+        return res.data;
+      })
+      .catch(err => {
+        return err;
+      });
     return {
       message: 'Your account is successfully deleted.',
       type: 'Info',

@@ -59,7 +59,7 @@ type Movie {
 }
 
 type Mutation {
-  addUser(input: UserInput!): User!
+  addUser(input: UserInput!): Message!
   addFavorite(input: FavoriteInput!): FavoritesAlt!
   deleteFavorite(input: FavoriteInput!): Boolean!
 }
