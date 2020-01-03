@@ -43,21 +43,16 @@ export class UserService {
       });
   }
 
-  async addUser(user: UserInput): Promise<Message> {
-    // this.users.push({
-    //   id: uuid(),
-    //   first_name: user.first_name,
-    //   last_name: user.last_name,
-    //   country: user.country,
-    //   birthday: user.birthday,
-    //   gender: user.gender,
-    //   admin: false
-    // });
-    return {
-      message: 'Your account is successfully created.',
-      type: 'Info',
-      status: 201
-    };
+  async addUser(user: UserInput): Promise<Observable<AxiosResponse<User[]>>> {
+    return this.http
+      .post('http://localhost:3333/api/user/post', user)
+      .toPromise()
+      .then(res => {
+        return res.data;
+      })
+      .catch(err => {
+        return err;
+      });
   }
 
   async getUserByUserId(
