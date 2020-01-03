@@ -1,9 +1,4 @@
-import {
-  Resolver,
-  Query,
-  Mutation,
-  Args,
-} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { Message, User } from '@movie-ms/dto';
 import { UserInput } from './inputs/user.input';
@@ -21,7 +16,7 @@ export class UserResolver {
     return await this.userService.findAll();
   }
 
-  @Query(() => User) // Find one user by id
+  @Query(() => [User]) // Find one user by id
   async getUserByUserId(@Args('id') id: string) {
     return await this.userService.getUserByUserId(id);
   }

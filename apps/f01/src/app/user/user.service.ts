@@ -4,7 +4,6 @@ import { UserInput } from './inputs/user.input';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 
-
 @Injectable()
 export class UserService {
   private readonly users: User[];
@@ -33,13 +32,15 @@ export class UserService {
   }
 
   async findAll(): Promise<Observable<AxiosResponse<User[]>>> {
-    return this.http.get("http://localhost:3003/api/user/get/all").toPromise()
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      return err;
-    })
+    return this.http
+      .get('http://localhost:3333/api/user/get/all')
+      .toPromise()
+      .then(res => {
+        return res.data;
+      })
+      .catch(err => {
+        return err;
+      });
   }
 
   async addUser(user: UserInput): Promise<Message> {
@@ -59,8 +60,18 @@ export class UserService {
     };
   }
 
-  async getUserByUserId(id: string): Promise<User | undefined> {
-    return this.users.find(user => user.id === id);
+  async getUserByUserId(
+    id: string
+  ): Promise<Observable<AxiosResponse<User[]>>> {
+    return this.http
+      .get('http://localhost:3333/api/user/get/' + id)
+      .toPromise()
+      .then(res => {
+        return res.data;
+      })
+      .catch(err => {
+        return err;
+      });
   }
 
   async deleteUser(id: string): Promise<Message> {
