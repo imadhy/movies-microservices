@@ -74,7 +74,7 @@ type Person {
 
 type Query {
   users: [User!]!
-  getUserByUserId(id: String!): User!
+  getUserByUserId(id: String!): [User!]!
   deleteUser(id: String!): Message!
   getFavoriteByUserId(user_id: String!): [FavoritesAlt!]!
 }
@@ -94,7 +94,10 @@ type User {
 input UserInput {
   first_name: String!
   last_name: String!
+  email: String!
   country: String!
+  created_at: DateTime!
   birthday: DateTime!
   gender: String!
+  admin: Boolean!
 }

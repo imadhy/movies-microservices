@@ -4,7 +4,6 @@ import { UserInput } from './inputs/user.input';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 
-
 @Injectable()
 export class UserService {
   private readonly users: User[];
@@ -33,38 +32,58 @@ export class UserService {
   }
 
   async findAll(): Promise<Observable<AxiosResponse<User[]>>> {
-    return this.http.get("http://localhost:3003/api/user/get/all").toPromise()
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      return err;
-    })
+    return this.http
+      .get('http://localhost:3003/api/user/get/all')
+      .toPromise()
+      .then(res => {
+        return res.data;
+      })
+      .catch(err => {
+        return err;
+      });
   }
 
   async addUser(user: UserInput): Promise<Message> {
-    // this.users.push({
-    //   id: uuid(),
-    //   first_name: user.first_name,
-    //   last_name: user.last_name,
-    //   country: user.country,
-    //   birthday: user.birthday,
-    //   gender: user.gender,
-    //   admin: false
-    // });
+    this.http
+      .post('http://localhost:3003/api/user/post', user)
+      .toPromise()
+      .then(res => {
+        return res.data;
+      })
+      .catch(err => {
+        return err;
+      });
     return {
       message: 'Your account is successfully created.',
       type: 'Info',
-      status: 201
+      status: 200
     };
   }
 
-  async getUserByUserId(id: string): Promise<User | undefined> {
-    return this.users.find(user => user.id === id);
+  async getUserByUserId(
+    id: string
+  ): Promise<Observable<AxiosResponse<User[]>>> {
+    return this.http
+      .get('http://localhost:3003/api/user/get/' + id)
+      .toPromise()
+      .then(res => {
+        return res.data;
+      })
+      .catch(err => {
+        return err;
+      });
   }
 
   async deleteUser(id: string): Promise<Message> {
-    this.users.splice(this.users.findIndex(user => user.id === id), 1);
+    this.http
+      .delete('http://localhost:3003/api/user/delete/' + id)
+      .toPromise()
+      .then(res => {
+        return res.data;
+      })
+      .catch(err => {
+        return err;
+      });
     return {
       message: 'Your account is successfully deleted.',
       type: 'Info',
