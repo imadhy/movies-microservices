@@ -24,7 +24,6 @@ export class FavoriteService {
       movie_id: favorite.movie_id
     };
 
-
     this.favorites.push(fav);
     return fav;
   }
@@ -34,8 +33,9 @@ export class FavoriteService {
   }
 
   async deleteFavorite(favorite: FavoriteInput): Promise<boolean> {
-    const favIndex = this.favorites.findIndex(fav =>
-      fav.user_id === favorite.user_id && fav.movie_id === favorite.movie_id
+    const favIndex = this.favorites.findIndex(
+      fav =>
+        fav.user_id === favorite.user_id && fav.movie_id === favorite.movie_id
     );
     if (favIndex !== -1) {
       this.favorites.splice(favIndex, 1);

@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Comment } from '@movie-ms/dto';
-import { Message } from '@movie-ms/dto';
+import { Comment, Message } from '@movie-ms/dto';
 import { v4 as uuid } from 'uuid';
 import { CommentInput } from './inputs/comment.input';
 
@@ -16,21 +15,25 @@ export class CommentService {
     return this.comments;
   }
 
-  async create(comment: CommentInput): Promise<Message> {
-    this.comments.push({
+  async create(comment: CommentInput): Promise<Comment> {
+    let newComment: Comment = {
       id: uuid(),
-      user: comment.user,
-      movie: comment.movie,
-      created_at: comment.created_at,
-      comment: comment.comment,
-      updated_at: comment.updated_at,
-      rating: comment.rating
-    });
-    return {
-      message: 'Your comment is successfully add.',
-      type: 'Info',
-      status: 201
+      userId: comment.userId,
+      movieId: comment.movieId,
+      // created_at: comment.created_at,
+      comment: comment.comment
+      // updated_at: comment.updated_at,
+      // rating: comment.rating
     };
+
+    this.comments.push(newComment);
+
+    return newComment;
+    // return {
+    //   message: 'Your comment is successfully add.',
+    //   type: 'Info',npm
+    //   status: 201
+    // };
   }
 
   async findOneById(id: string): Promise<Comment | undefined> {
@@ -43,7 +46,10 @@ export class CommentService {
   // }
 
   async delete(id: string): Promise<Message> {
-    this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1);
+    this.comments.splice(
+      this.comments.findIndex(comment => comment.id === id),
+      1
+    );
     return {
       message: 'Your account is successfully deleted.',
       type: 'Info',

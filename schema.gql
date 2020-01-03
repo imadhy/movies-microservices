@@ -10,12 +10,15 @@ type Category {
 
 type Comment {
   id: ID!
-  user: User!
-  movie: Movie!
-  created_at: DateTime!
+  userId: ID!
+  movieId: ID!
   comment: String!
-  updated_at: DateTime
-  rating: Float
+}
+
+input CommentInput {
+  userId: ID!
+  movieId: ID!
+  comment: String!
 }
 
 """
@@ -60,6 +63,7 @@ type Movie {
 
 type Mutation {
   addUser(input: UserInput!): Message!
+  addComment(input: CommentInput!): Comment!
   addFavorite(input: FavoriteInput!): FavoritesAlt!
   deleteFavorite(input: FavoriteInput!): Boolean!
 }
@@ -68,14 +72,15 @@ type Person {
   id: ID!
   firstname: String!
   lastname: String!
-  birthday: DateTime
-  movies: [Movie!]
 }
 
 type Query {
   users: [User!]!
   getUserByUserId(id: String!): User!
   deleteUser(id: String!): Message!
+  comments: [Comment!]!
+  findComment(id: String!): Comment!
+  deleteComment(id: String!): Message!
   getFavoriteByUserId(user_id: String!): [FavoritesAlt!]!
 }
 

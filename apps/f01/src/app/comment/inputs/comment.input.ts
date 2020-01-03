@@ -1,18 +1,17 @@
-import { InputType, Field } from 'type-graphql';
-import { Movie, User } from '@movie-ms/dto';
+import { InputType, Field, ID } from 'type-graphql';
 
 @InputType()
 export class CommentInput {
-    @Field()
-    readonly user: User;
-    @Field()
-    readonly movie: Movie;
-    @Field()
-    readonly created_at: Date;
-    @Field()
-    readonly comment: string;
-    @Field()
-    readonly updated_at?: Date;
-    @Field()
-    readonly rating?: number;
+@Field(() => ID)
+  readonly userId: string;
+  @Field(() => ID)
+readonly movieId: string;
+@Field()
+  readonly comment: string;
+// @Field()
+  // readonly created_at?: Date;
+  // @Field()
+// readonly updated_at?: Date;
+// @Field()
+  // readonly rating?: number;
 }
