@@ -8,6 +8,23 @@
 npm start f01
 ```
 
+## Entities
+
+- `Message`
+
+| Attribute | Type | Description |
+| - | - | - |
+| message | string | Request information |
+| type | string | Message type (Info / Error) |
+| status | number | Request status |
+
+- `Favorite`
+
+| Attribute | Type | Description |
+| - | - | - |
+| user_id | string | User id |
+| movie_id | string | Movie id |
+
 ## Usage
 
 | Endpoint |
@@ -51,6 +68,8 @@ Example response :
 
 #### GraphQL POST `getFavoriteByUserId`
 
+Example request :
+
 ```qraphql
 {
   getFavoriteByUserId(user_id: "shaggy") {
@@ -78,6 +97,8 @@ Example response :
 ```
 
 #### GraphQL POST `deleteFavorite`
+
+Example request :
 
 ```qraphql
 mutation {

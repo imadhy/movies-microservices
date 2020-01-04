@@ -9,11 +9,14 @@ import { Observable } from 'rxjs';
 export class FavoriteService {
   private readonly favorites: FavoritesAlt[];
 
-  constructor() {
+  constructor(private readonly http: HttpService) {
     this.favorites = [];
   }
 
   async addFavorite(favorite: FavoriteInput): Promise<Message> {
+
+    //D01 missing request : get favorite by userId and movieId
+
     const favIndex = this.favorites.findIndex(fav => {
       return (
         fav.user_id === favorite.user_id && fav.movie_id === favorite.movie_id
@@ -33,6 +36,14 @@ export class FavoriteService {
         movie_id: favorite.movie_id
       });
 
+      // LIVE ADD FAVORITE
+      // const request = 'http://localhost:3003/api/favorite/post';
+      // this.http.post(request, favorite).toPromise().then(res => {
+      //   return res.data;
+      // }).catch(err => {
+      //   return err;
+      // });
+
       result.message = 'Favorite has been successfully added';
       result.type = 'Info';
       result.status = 200;
@@ -42,10 +53,16 @@ export class FavoriteService {
   }
 
   async getFavoriteByUserId(user_id: string): Promise<FavoritesAlt[]> {
+
+    //D01 missing request : get favorite by userId
+
     return this.favorites.filter(favorite => favorite.user_id === user_id);
   }
 
   async deleteFavorite(favorite: FavoriteInput): Promise<Message> {
+
+    //D01 missing request : delete favorite by userId and movieId
+
     const favIndex = this.favorites.findIndex(fav => {
       return (
         fav.user_id === favorite.user_id && fav.movie_id === favorite.movie_id

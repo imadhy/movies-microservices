@@ -11,16 +11,16 @@ export class FavoriteResolver {
 
   @Mutation(() => Message) // Add Favorite
   async addFavorite(@Args('input') input: FavoriteInput) {
-    return this.favoriteService.addFavorite(input);
+    return await this.favoriteService.addFavorite(input);
   }
 
   @Query(() => [FavoritesAlt]) // Find all favorites by user id
   async getFavoriteByUserId(@Args('user_id') user_id: string) {
-    return this.favoriteService.getFavoriteByUserId(user_id);
+    return await this.favoriteService.getFavoriteByUserId(user_id);
   }
 
   @Mutation(() => Message) // Delete favorite
   async deleteFavorite(@Args('input') input: FavoriteInput) {
-    return this.favoriteService.deleteFavorite(input);
+    return await this.favoriteService.deleteFavorite(input);
   }
 }
