@@ -88,7 +88,11 @@ export class AppService {
       { id_user: '1', id_media: '5' },
       { id_user: '2', id_media: '6' },
       { id_user: '3', id_media: '5' },
-      { id_user: '4', id_media: '6' }
+      { id_user: '4', id_media: '6' },
+      { id_user: '1', id_media: '8' },
+      { id_user: '2', id_media: '2' },
+      { id_user: '3', id_media: '4' },
+      { id_user: '4', id_media: '3' }
     ];
 
     let nbFavByFilm: FavByMedia[] = this.countElement(data);
@@ -99,18 +103,17 @@ export class AppService {
       var authArrayTemp: FavByAuthor[] = [];
 
       nbFavByFilm.forEach(favElmt => {
-        let auth = this.callApi('https://api/getAuth/' + favElmt.id_media);
-        console.log('erreur ligne 66 auth est vide car ça call null part');
-        // authArrayTemp.push({auth_id: auth["id"], nb_fav: favElmt.nb_fav});
+        let auth = JSON.parse(this.callApi('https://api/getAuth/' + favElmt.id_media));
+        auth = {auth_id: "4"};
+        authArrayTemp.push({auth_id: auth["auth_id"], nb_fav: favElmt.nb_fav});
       });
-      authArrayTemp.sort((a, b) => a.nb_fav - b.nb_fav);
+      authArrayTemp.sort((a, b) => b.nb_fav - a.nb_fav);
 
       for (let i = 0; i < 10; i++) {
         authArray[i] = authArrayTemp[i];
       }
     }
 
-    // return '{methode : getTopDixAuthorByFavMedia}';
     return JSON.stringify(authArray);
   }
 
@@ -140,8 +143,8 @@ export class AppService {
    * Appelle et retourne les données trouvées à cette adresse
    * @param url chaine de caractère correspondant à l'url
    */
-  callApi(url: string): String {
-    var data: String = null;
+  callApi(url: string): string {
+    var data: string = null;
     this.httpService.get(url).subscribe(res => {
       data = res.data;
     });
