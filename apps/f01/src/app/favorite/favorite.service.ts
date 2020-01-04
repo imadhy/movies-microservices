@@ -1,9 +1,7 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import { FavoritesAlt, Message } from '@movie-ms/dto';
-
 import { FavoriteInput } from './inputs/favorite.input';
 import { v4 as uuid } from 'uuid';
-
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 
@@ -12,29 +10,35 @@ export class FavoriteService {
   private readonly favorites: FavoritesAlt[];
 
   constructor() {
-    this.favorites = [
-      {
-        id: '0',
-        user_id: 'shaggy',
-        movie_id: '1984'
-      }
-    ];
+    this.favorites = [];
   }
 
   async addFavorite(favorite: FavoriteInput): Promise<Message> {
-    const fav: FavoritesAlt = {
-      id: uuid(),
-      user_id: favorite.user_id,
-      movie_id: favorite.movie_id
+    const favIndex = this.favorites.findIndex(fav => {
+      return (
+        fav.user_id === favorite.user_id && fav.movie_id === favorite.movie_id
+      );
+    });
+
+    let result = {
+      message: 'Favorite already exists',
+      type: 'Error',
+      status: 400
     };
 
-    this.favorites.push(fav);
+    if (favIndex === -1) {
+      this.favorites.push({
+        id: uuid(),
+        user_id: favorite.user_id,
+        movie_id: favorite.movie_id
+      });
 
-    return {
-      message: 'Favorite has been successfully added',
-      type: 'Info',
-      status: 200
-    };
+      result.message = 'Favorite has been successfully added';
+      result.type = 'Info';
+      result.status = 200;
+    }
+
+    return result;
   }
 
   async getFavoriteByUserId(user_id: string): Promise<FavoritesAlt[]> {
@@ -44,8 +48,7 @@ export class FavoriteService {
   async deleteFavorite(favorite: FavoriteInput): Promise<Message> {
     const favIndex = this.favorites.findIndex(fav => {
       return (
-        fav.user_id === favorite.user_id &&
-        fav.movie_id === favorite.movie_id
+        fav.user_id === favorite.user_id && fav.movie_id === favorite.movie_id
       );
     });
 

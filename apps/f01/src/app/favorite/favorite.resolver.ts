@@ -9,7 +9,7 @@ import { FavoritesAlt, Message } from '@movie-ms/dto';
 export class FavoriteResolver {
   constructor(private readonly favoriteService: FavoriteService) {}
 
-  @Mutation(() => FavoritesAlt) // Create Favorite
+  @Mutation(() => Message) // Add Favorite
   async addFavorite(@Args('input') input: FavoriteInput) {
     return this.favoriteService.addFavorite(input);
   }

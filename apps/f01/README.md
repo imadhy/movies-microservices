@@ -28,9 +28,9 @@ mutation {
     user_id: "shaggy"
     movie_id: "1984"
   }) {
-    id
-    user_id
-    movie_id
+    message
+    type
+    status
   }
 }
 ```
@@ -41,9 +41,9 @@ Example response :
 {
   "data": {
     "addFavorite": {
-      "id": "42c49b34-84b2-43f0-ba46-001437445a61",
-      "user_id": "shaggy",
-      "movie_id": "1984"
+      "message": "Favorite has been successfully added",
+      "type": "Info",
+      "status": 200
     }
   }
 }
