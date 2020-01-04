@@ -21,9 +21,10 @@ export class MovieController {
 
   @Post()
   createOrder(@Body() data) {
-    console.log(data);
-    let categoriesId = JSON.parse(data['categories']);
-    return this.MovieService.create(data as MovieEntity, categoriesId['ids']);
+    return this.MovieService.create(
+      data as MovieEntity,
+      data['categories']['ids']
+    );
   }
 
   @Get(':id')
@@ -34,12 +35,12 @@ export class MovieController {
   updateOrder(@Param('id') id: string, @Body() data) {
     let categoriesId = [];
     try {
-      categoriesId = JSON.parse(data['categories']);
+      categoriesId = data['categories']['ids'];
       delete data['categories'];
     } catch (err) {
-      categoriesId['ids'] = null;
+      categoriesId = null;
     }
-    return this.MovieService.update(id, data, categoriesId['ids']);
+    return this.MovieService.update(id, data, categoriesId);
   }
 
   @Delete(':id')
