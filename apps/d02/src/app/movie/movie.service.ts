@@ -32,7 +32,9 @@ export class MovieService {
     });
   }
   async update(id: string, data: Partial<MovieEntity>, categories: String[]) {
-    this.setCategories(categories, id);
+    if (categories != null) {
+      this.setCategories(categories, id);
+    }
     return await this.movieRep.update({ id }, data);
   }
   async setCategories(categories: String[], id: string) {

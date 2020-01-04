@@ -32,8 +32,13 @@ export class MovieController {
   }
   @Put(':id')
   updateOrder(@Param('id') id: string, @Body() data) {
-    let categoriesId = JSON.parse(data['categories']);
-    delete data['categories'];
+    let categoriesId = [];
+    try {
+      categoriesId = JSON.parse(data['categories']);
+      delete data['categories'];
+    } catch (err) {
+      categoriesId['ids'] = null;
+    }
     return this.MovieService.update(id, data, categoriesId['ids']);
   }
 
