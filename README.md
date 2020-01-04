@@ -1,76 +1,62 @@
-# MoviesMicroservices
+# Domaine 2
 
-This project was generated using [Nx](https://nx.dev).
+Vous êtes sur la branche du domaine 2. Ce domaine traite des données concernant les personnes.
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>
+## Équipe
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+- Antonin JOULIE 👑
+- Paul LEREVEREND ⚙️
+- Corentin GUILLARD
+- Valentin DEZAT
 
-## Adding capabilities to your workspace
+# Installation
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+`npm install`
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+`npm start d02`
 
-Below are some plugins which you can add to your workspace:
+http://localhost:3333/api/
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+La base de donnée est pré-configurée. Si vous souhaitez utiliser votre serveur, la configuration se trouve dans `app.module.ts`. La création des tables est automatique.
 
-## Generate an application
+# Documentation technique
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+Pour plus de renseignements contacter Paul LEREVEREND : paul.lereverend@ynov.com
 
-> You can use any of the plugins above to generate applications as well.
+Les méthodes en rouge ne sont pas encore fonctionnelles. Cette page sera éditée au fur et à mesure.
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+## Films
 
-## Generate a library
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) GET - `movie` : retourne l'ensemble des films
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) GET - `movie/{id}` : retourne un film
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) POST - `movie` : ajoute un film
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) PUT - `movie/{id}` : met à jour un film
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) DELETE - `movie/{id}` : supprime un film
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+- ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) GET - `movie/{categoryId}` : retourne les films d'une catégorie
+- ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) GET - `movie/actor/{personId}` : retourne les films d'un acteur
+- ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) GET - `movie/director/{personId}` : retourne les films d'un réalisateur
+- ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) GET - `movie/producer/{personId}` : retourne les films d'un acteur
+- ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) GET - `movie/sort/{sortType}` : retourne les films dans un certain ordre
 
-> You can also use any of the plugins above to generate libraries as well.
+## Personnes
 
-Libraries are sharable across libraries and applications. They can be imported from `@movies-microservices/mylib`.
+Cette ressource regroupe les réalisateurs, les acteurs et les producteurs.
 
-## Development server
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) GET - `person` : retourne l'ensemble des personnes
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) GET - `person/{id}` : retourne une personne
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) POST - `person` : ajoute une personne
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) PUT - `person/{id}` : met à jour une personne
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) DELETE - `person/{id}` : supprime une personne
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+## Category
 
-## Code scaffolding
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) GET - `category` : retourne l'ensemble des catégories
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) GET - `category/{id}` : retourne une catégorie
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) POST - `category` : ajoute une catégorie
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) PUT - `category/{id}` : met à jour une catégorie
+- ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) DELETE - `category/{id}` : supprime une catégorie
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+## Modèle de données
 
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+![alt text](https://github.com/imadhy/movies-microservices/blob/d02/base/mcd_domaine2.png?raw=true)
