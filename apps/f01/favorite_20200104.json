@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2019-12-28T18:11:36.365Z",
+  "__export_date": "2020-01-04T19:24:05.754Z",
   "__export_source": "insomnia.desktop.app:v7.0.6",
   "resources": [
     {
@@ -9,7 +9,7 @@
       "authentication": {},
       "body": {
         "mimeType": "application/graphql",
-        "text": "{\"query\":\"mutation {\\n  deleteFavorite(\\n\\t\\tinput: {\\n    user_id: \\\"shaggy\\\"\\n    movie_id: \\\"1984\\\"\\n  })\\n}\"}"
+        "text": "{\"query\":\"mutation {\\n  deleteFavorite(input: {user_id: \\\"shaggy\\\", movie_id: \\\"1984\\\"}) {\\n    message\\n    type\\n    status\\n  }\\n}\\n\"}"
       },
       "created": 1577556437223,
       "description": "",
@@ -23,7 +23,7 @@
       "isPrivate": false,
       "metaSortKey": -1577556437223,
       "method": "POST",
-      "modified": 1577556592629,
+      "modified": 1578165522705,
       "name": "deleteFavorite",
       "parameters": [],
       "parentId": "fld_199e4b9a353a429c8330fd383f2d82e4",
@@ -62,7 +62,7 @@
       "authentication": {},
       "body": {
         "mimeType": "application/graphql",
-        "text": "{\"query\":\"{\\n  getFavoriteByUserId(user_id: \\\"shaggy\\\") {\\n    id\\n    user_id\\n    movie_id\\n  }\\n}\"}"
+        "text": "{\"query\":\"{\\n  getFavoriteByUserId(user_id: \\\"shaggy\\\") {\\n    id\\n    user_id\\n    movie_id\\n  }\\n}\\n\"}"
       },
       "created": 1577556223074,
       "description": "",
@@ -76,7 +76,7 @@
       "isPrivate": false,
       "metaSortKey": -1577556223074,
       "method": "POST",
-      "modified": 1577556395938,
+      "modified": 1578165507927,
       "name": "getFavoriteByUserId",
       "parameters": [],
       "parentId": "fld_199e4b9a353a429c8330fd383f2d82e4",
@@ -94,7 +94,7 @@
       "authentication": {},
       "body": {
         "mimeType": "application/graphql",
-        "text": "{\"query\":\"mutation {\\n  addFavorite(input: {\\n    user_id: \\\"shaggy\\\"\\n    movie_id: \\\"1984\\\"\\n  }) {\\n    id\\n    user_id\\n    movie_id\\n  }\\n}\"}"
+        "text": "{\"query\":\"mutation {\\n  addFavorite(input: {user_id: \\\"shaggy\\\", movie_id: \\\"1984\\\"}) {\\n    message\\n    type\\n    status\\n  }\\n}\\n\"}"
       },
       "created": 1577556159777,
       "description": "",
@@ -108,7 +108,7 @@
       "isPrivate": false,
       "metaSortKey": -1577556159777,
       "method": "POST",
-      "modified": 1577556598643,
+      "modified": 1578165502778,
       "name": "addFavorite",
       "parameters": [],
       "parentId": "fld_199e4b9a353a429c8330fd383f2d82e4",
@@ -151,7 +151,12 @@
         "url-api": "http://localhost:3001/api",
         "url-gql": "http://localhost:3001/graphql"
       },
-      "dataPropertyOrder": { "&": ["url-api", "url-gql"] },
+      "dataPropertyOrder": {
+        "&": [
+          "url-api",
+          "url-gql"
+        ]
+      },
       "isPrivate": false,
       "metaSortKey": 1575215142981,
       "modified": 1575228138696,
