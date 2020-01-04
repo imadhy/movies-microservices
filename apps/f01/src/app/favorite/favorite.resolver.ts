@@ -3,7 +3,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { FavoriteService } from './favorite.service';
 import { FavoriteInput } from './inputs/favorite.input';
-import { FavoritesAlt } from '@movie-ms/dto';
+import { FavoritesAlt, Message } from '@movie-ms/dto';
 
 @Resolver('Favorite')
 export class FavoriteResolver {
@@ -19,7 +19,7 @@ export class FavoriteResolver {
     return this.favoriteService.getFavoriteByUserId(user_id);
   }
 
-  @Mutation(() => Boolean) // Delete favorite
+  @Mutation(() => Message) // Delete favorite
   async deleteFavorite(@Args('input') input: FavoriteInput) {
     return this.favoriteService.deleteFavorite(input);
   }
