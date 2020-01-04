@@ -2,30 +2,44 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MovieEntity } from 'libs/dto/src/lib/d02/movie.entity';
+import { CategoryEntity } from 'libs/dto/src/lib/d02/category.entity';
 
 @Injectable()
 export class MovieService {
   constructor(
     @InjectRepository(MovieEntity)
-    private readonly movieRep: Repository<MovieEntity>
+    private readonly movieRep: Repository<MovieEntity>,
+    @InjectRepository(CategoryEntity)
+    private readonly categoryRep: Repository<CategoryEntity>
   ) {}
 
   async showAll() {
-    return await this.movieRep.find();
+    return await this.movieRep.find({ relations: ['categories'] });
   }
 
-  async create(data: MovieEntity) {
+  async create(data: MovieEntity, categories: String[]) {
     const order = await this.movieRep.create(data);
+    let cat = await this.categoryRep.findByIds(categories);
+    order.categories = cat;
     await this.movieRep.save(order);
     return order;
   }
 
   async show(id: string) {
-    return await this.movieRep.findOne({ where: { id } });
+    return await this.movieRep.findOne({
+      where: { id },
+      relations: ['categories']
+    });
   }
-
-  async update(id: string, data: Partial<MovieEntity>) {
+  async update(id: string, data: Partial<MovieEntity>, categories: String[]) {
+    this.setCategories(categories, id);
     return await this.movieRep.update({ id }, data);
+  }
+  async setCategories(categories: String[], id: string) {
+    let cat = await this.categoryRep.findByIds(categories);
+    let movie = await this.movieRep.findOne(id);
+    movie.categories = cat;
+    await this.movieRep.save(movie);
   }
 
   async destroy(id: string) {

@@ -21,17 +21,20 @@ export class MovieController {
 
   @Post()
   createOrder(@Body() data) {
-    return this.MovieService.create(data);
+    console.log(data);
+    let categoriesId = JSON.parse(data['categories']);
+    return this.MovieService.create(data as MovieEntity, categoriesId['ids']);
   }
 
   @Get(':id')
   showOrder(@Param('id') id: string) {
     return this.MovieService.show(id);
   }
-
   @Put(':id')
-  updateOrder(@Param('id') id: string, @Body() data: Partial<MovieEntity>) {
-    return this.MovieService.update(id, data);
+  updateOrder(@Param('id') id: string, @Body() data) {
+    let categoriesId = JSON.parse(data['categories']);
+    delete data['categories'];
+    return this.MovieService.update(id, data, categoriesId['ids']);
   }
 
   @Delete(':id')
