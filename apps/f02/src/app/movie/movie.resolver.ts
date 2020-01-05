@@ -73,6 +73,7 @@ export class MovieResolver {
     movie.actors = { ids: movie.actors };
     movie.directors = { ids: movie.directors };
     movie.producers = { ids: movie.producers };
+    movie.release = new Date(movie.release);
     return await this.movieService.updateMovie(id, movie);
   }
 
