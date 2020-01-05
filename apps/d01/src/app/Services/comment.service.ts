@@ -37,9 +37,6 @@ export class CommentService {
   }
 
   async findByID(id) {
-    return this.commentRepo.query(
-      'SELECT * FROM comments where  "mediaId" like ' + '$1' + '',
-      [id]
-    );
+    return this.commentRepo.query('SELECT * FROM comments WHERE id = $1', [id]);
   }
 }
