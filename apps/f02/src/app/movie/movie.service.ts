@@ -29,16 +29,16 @@ export class MovieService {
 
   // Update Movie
   async updateMovie(id: string, movie: MovieEntity): Promise<MovieEntity> {
-    let res = await fetch(this.url, {
+    let res = await fetch(this.url + id, {
       method: 'put',
       body: JSON.stringify(movie),
       headers: { 'Content-Type': 'application/json' }
     });
-    return res.json();
+    return await res.json();
   }
 
   // Delete Movie
-  async deleteMovie(id: string): Promise<MovieEntity> {
+  async deleteMovie(id: string) {
     let res = await fetch(this.url + id, {
       method: 'delete'
     });

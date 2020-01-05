@@ -8,7 +8,7 @@ type Movie {
   directors: [Person]
   producers: [Person]
   actors: [Person]
-  release: Date
+  release: String
   synopsis: String
   createdAt: Date
   updatedAt: Date
@@ -21,7 +21,7 @@ input MovieInput {
   directors: [ID]
   producers: [ID]
   actors: [ID]
-  release: Date
+  release: String
   synopsis: String
 }
 
@@ -30,8 +30,12 @@ type Query {
   movies: [Movie]
 }
 
+type Deleted {
+  delete: Boolean
+}
+
 type Mutation {
   createMovie(movie: MovieInput): Movie
   updateMovie(id: ID!, movie: MovieInput): Movie
-  deleteMovie(id: ID!): Movie
+  deleteMovie(id: ID!): Deleted
 }

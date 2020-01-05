@@ -60,18 +60,19 @@ export class MovieResolver {
   @Mutation()
   async createMovie(@Args('movie') movie) {
     movie.categories = { ids: movie.categories };
-    movie.actors = { ids: movie.categories };
-    movie.directors = { ids: movie.categories };
-    movie.producers = { ids: movie.categories };
+    movie.actors = { ids: movie.actors };
+    movie.directors = { ids: movie.directors };
+    movie.producers = { ids: movie.producers };
+    movie.release = new Date(movie.release);
     return await this.movieService.createMovie(movie);
   }
 
   @Mutation()
-  async updateMovie(@Args('id') id, @Args('movie') movie) {
+  async updateMovie(@Args('id') id: string, @Args('movie') movie) {
     movie.categories = { ids: movie.categories };
-    movie.actors = { ids: movie.categories };
-    movie.directors = { ids: movie.categories };
-    movie.producers = { ids: movie.categories };
+    movie.actors = { ids: movie.actors };
+    movie.directors = { ids: movie.directors };
+    movie.producers = { ids: movie.producers };
     return await this.movieService.updateMovie(id, movie);
   }
 

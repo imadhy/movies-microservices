@@ -16,7 +16,7 @@ export interface MovieInput {
     directors?: string[];
     producers?: string[];
     actors?: string[];
-    release?: Date;
+    release?: string;
     synopsis?: string;
 }
 
@@ -30,6 +30,10 @@ export interface Category {
     name?: string;
 }
 
+export interface Deleted {
+    delete?: boolean;
+}
+
 export interface Movie {
     id: string;
     categories?: Category[];
@@ -38,7 +42,7 @@ export interface Movie {
     directors?: Person[];
     producers?: Person[];
     actors?: Person[];
-    release?: Date;
+    release?: string;
     synopsis?: string;
     createdAt?: Date;
     updatedAt?: Date;
@@ -47,13 +51,13 @@ export interface Movie {
 export interface IMutation {
     createCategory(category?: CategoryInput): Category | Promise<Category>;
     updateCategory(id: string, category?: CategoryInput): Category | Promise<Category>;
-    deleteCategory(id: string): Category | Promise<Category>;
+    deleteCategory(id: string): Deleted | Promise<Deleted>;
     createMovie(movie?: MovieInput): Movie | Promise<Movie>;
     updateMovie(id: string, movie?: MovieInput): Movie | Promise<Movie>;
-    deleteMovie(id: string): Movie | Promise<Movie>;
+    deleteMovie(id: string): Deleted | Promise<Deleted>;
     createPerson(person?: PersonInput): Person | Promise<Person>;
     updatePerson(id: string, person?: PersonInput): Person | Promise<Person>;
-    deletePerson(id: string): Person | Promise<Person>;
+    deletePerson(id: string): Deleted | Promise<Deleted>;
 }
 
 export interface Person {
