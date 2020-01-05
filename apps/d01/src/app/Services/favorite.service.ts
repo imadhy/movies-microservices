@@ -12,9 +12,7 @@ export class FavoriteService {
 
   async findByID(id) {
     return this.favoriteRepo.query(
-      'SELECT * FROM favorites where "user" = $1',
-      [id]
-    );
+      'SELECT * FROM favorites where "user" = $1', [id]);
   }
 
   async deleteById(id) {
