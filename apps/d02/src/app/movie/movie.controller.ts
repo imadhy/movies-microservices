@@ -21,9 +21,42 @@ export class MovieController {
 
   @Post()
   createOrder(@Body() data) {
+    let categoriesId = [];
+    let actorsId = [];
+    let producersId = [];
+    let directorsId = [];
+
+    try {
+      categoriesId = data['categories']['ids'];
+      delete data['categories'];
+    } catch (err) {
+      categoriesId = null;
+    }
+    try {
+      producersId = data['producers']['ids'];
+      delete data['producers'];
+    } catch (err) {
+      producersId = null;
+    }
+    try {
+      actorsId = data['actors']['ids'];
+      delete data['actors'];
+    } catch (err) {
+      actorsId = null;
+    }
+    try {
+      directorsId = data['directors']['ids'];
+      delete data['directors'];
+    } catch (err) {
+      directorsId = null;
+    }
+
     return this.MovieService.create(
       data as MovieEntity,
-      data['categories']['ids']
+      categoriesId,
+      actorsId,
+      producersId,
+      directorsId
     );
   }
 
@@ -34,13 +67,43 @@ export class MovieController {
   @Put(':id')
   updateOrder(@Param('id') id: string, @Body() data) {
     let categoriesId = [];
+    let actorsId = [];
+    let producersId = [];
+    let directorsId = [];
+
     try {
       categoriesId = data['categories']['ids'];
       delete data['categories'];
     } catch (err) {
       categoriesId = null;
     }
-    return this.MovieService.update(id, data, categoriesId);
+    try {
+      producersId = data['producers']['ids'];
+      delete data['producers'];
+    } catch (err) {
+      producersId = null;
+    }
+    try {
+      actorsId = data['actors']['ids'];
+      delete data['actors'];
+    } catch (err) {
+      actorsId = null;
+    }
+    try {
+      directorsId = data['directors']['ids'];
+      delete data['directors'];
+    } catch (err) {
+      directorsId = null;
+    }
+
+    return this.MovieService.update(
+      id,
+      data,
+      categoriesId,
+      actorsId,
+      producersId,
+      directorsId
+    );
   }
 
   @Delete(':id')
