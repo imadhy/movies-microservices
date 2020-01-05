@@ -12,6 +12,6 @@ readonly movieId: string;
   // readonly created_at?: Date;
   // @Field()
 // readonly updated_at?: Date;
-// @Field()
-  // readonly rating?: number;
+@Field()
+  readonly rating?: number;
 }

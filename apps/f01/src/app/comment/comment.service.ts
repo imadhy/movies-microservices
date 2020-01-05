@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class CommentService {
-  private readonly userIdNotExist: Function;
-  private readonly movieIdNotExist: Function;
+  private readonly userIdExist: Function;
+  private readonly movieIdExist: Function;
 
   constructor(private readonly http: HttpService) {
-    this.userIdNotExist = function (id:string) {
+    this.userIdExist = function (id:string) {
       return this.http.get("http://localhost:3333/api/user/get/all").toPromise()
       .then((res) => {
         for (let i = 0; i < res.data.length; i++) {
@@ -24,16 +24,16 @@ export class CommentService {
         return true
       })
     };
-    this.movieIdNotExist = function (id:string) {
+    this.movieIdExist = function (id:string) {
       return this.http.get("http://localhost:3333/api/movie").toPromise()
       .then((res) => {
         for (let i = 0; i < res.data.length; i++) {
           const element = res.data[i];
           if (element.id === id) {
-            return false
+            return true
           }
         }
-        return true
+        return false
       })
     }; 
 
@@ -42,43 +42,45 @@ export class CommentService {
   async findAll(): Promise<Observable<AxiosResponse<Comment[]>>> {
     return this.http.get("http://localhost:3333/api/comment/get/all").toPromise()
     .then((res) => {
-      return res.data;
+      return JSON.parse(res.data);
     })
     .catch((err) => {
       return err;
     })
   }
 
-  async create(comment: CommentInput): Promise<Object> {
-    
-    if(this.userIdNotExist(comment.userId)&& this.movieIdNotExist(comment.userId)){
-      let newComment: Comment = {
-        id: uuid(),
-        userId: comment.userId,
-        movieId: comment.movieId,
-        // created_at: comment.created_at,
-        comment: comment.comment
-        // updated_at: comment.updated_at,
-        // rating: comment.rating
-      };
+  async create(comment: CommentInput): Promise<Message> {
+    // on pourra executer ces fonctions qui teste la presence de ID quand D01 auras un getAll
+    //if(this.userIdExist(comment.userId)&& this.movieIdExist(comment.userId)){
+      let newComment: object = {
+          "user": comment.userId,
+          "mediaId": comment.movieId,
+          "createdAt":new Date(),
+          "updatedAt": new Date(),
+          "rating": comment.rating,
+          "text": comment.comment
+        }
+        
       let postOk = this.http.post("http://localhost:3333/api/comment/post",newComment).toPromise()
       .then((res) => {
+        console.log(res);
+        
         return true;
       })
       .catch((err) => {
+        console.log(err);
+        
         return false;
       })
       if (postOk) {
         return  {
-          response:newComment,
           message: 'Your comment is successfully add.',
           type: 'Info',
           status: 201
         };  
       }
-    }
+    //}
     return {
-        response: null,
         message: 'Your comment is not add.',
         type: 'Error',
         status: 500
@@ -97,6 +99,24 @@ export class CommentService {
       return err;
     })
   }
+
+  // On ne peut pas executer la fonction car il n'y a pas de get all du coté du domaine 01 
+
+
+  // async findOneByUserId(id: string): Promise<Observable<AxiosResponse<Comment>>> {
+  //   return this.http.get("http://localhost:3333/api/comment/get/all").toPromise()
+  //   .then((res) => {
+  //    for (let i = 0; i < res.data.length; i++) {
+  //      const element = res.data[i];
+  //      if (element.userId === id) {
+  //       return element
+  //     }
+  //    }
+  //   })
+  //   .catch((err) => {
+  //     return err;
+  //   })
+  // }
 
   async delete(id: string): Promise<Message> {
     return this.http.delete("http://localhost:3333/api/comment/delete/"+id).toPromise()
