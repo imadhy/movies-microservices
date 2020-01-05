@@ -20,4 +20,14 @@ export class CategoryResolver {
   async createCategory(@Args('category') category) {
     return await this.categoryService.createCategory(category);
   }
+
+  @Mutation()
+  async updateCategory(@Args('id') id: string, @Args('category') category) {
+    return await this.categoryService.updateCategory(id, category);
+  }
+
+  @Mutation()
+  async deleteCategory(@Args('id') id: string) {
+    return await this.categoryService.deleteCategory(id);
+  }
 }

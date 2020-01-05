@@ -28,4 +28,25 @@ export class CategoryService {
     });
     return res.json();
   }
+
+  // Update Category
+  async updateCategory(
+    id: string,
+    category: CategoryEntity
+  ): Promise<CategoryEntity> {
+    let res = await fetch(this.url + id, {
+      method: 'put',
+      body: JSON.stringify(category),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    return res.json();
+  }
+
+  // Delete Category
+  async deleteCategory(id: String): Promise<CategoryEntity> {
+    let res = await fetch(this.url + id, {
+      method: 'delete'
+    });
+    return res.json();
+  }
 }

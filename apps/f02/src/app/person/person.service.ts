@@ -28,4 +28,22 @@ export class PersonService {
     });
     return res.json();
   }
+
+  // Update Person
+  async updatePerson(id: string, person: PersonEntity): Promise<PersonEntity> {
+    let res = await fetch(this.url + id, {
+      method: 'put',
+      body: JSON.stringify(person),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    return res.json();
+  }
+
+  // Delete Person
+  async deletePerson(id: string): Promise<PersonEntity> {
+    let res = await fetch(this.url + id, {
+      method: 'delete'
+    });
+    return res.json();
+  }
 }

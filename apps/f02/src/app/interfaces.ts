@@ -46,8 +46,14 @@ export interface Movie {
 
 export interface IMutation {
     createCategory(category?: CategoryInput): Category | Promise<Category>;
+    updateCategory(id: string, category?: CategoryInput): Category | Promise<Category>;
+    deleteCategory(id: string): Category | Promise<Category>;
     createMovie(movie?: MovieInput): Movie | Promise<Movie>;
+    updateMovie(id: string, movie?: MovieInput): Movie | Promise<Movie>;
+    deleteMovie(id: string): Movie | Promise<Movie>;
     createPerson(person?: PersonInput): Person | Promise<Person>;
+    updatePerson(id: string, person?: PersonInput): Person | Promise<Person>;
+    deletePerson(id: string): Person | Promise<Person>;
 }
 
 export interface Person {

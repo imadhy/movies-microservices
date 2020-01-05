@@ -19,7 +19,6 @@ export class MovieService {
 
   // Create Movie
   async createMovie(movie: MovieEntity): Promise<MovieEntity> {
-    console.log(movie);
     let res = await fetch(this.url, {
       method: 'post',
       body: JSON.stringify(movie),
@@ -28,17 +27,21 @@ export class MovieService {
     return res.json();
   }
 
-  // // Update Movie By Id
-  // updateMovieById(id: string, movie: MovieEntity): MovieEntity {
-  //   let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
-  //   this.movies[index] = movie;
-  //   return movie;
-  // }
+  // Update Movie
+  async updateMovie(id: string, movie: MovieEntity): Promise<MovieEntity> {
+    let res = await fetch(this.url, {
+      method: 'put',
+      body: JSON.stringify(movie),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    return res.json();
+  }
 
-  // // Delete Movie By Id
-  // deleteMovieById(id: string): string {
-  //   let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
-  //   this.movies.splice(index, 1);
-  //   return 'movie deleted';
-  // }
+  // Delete Movie
+  async deleteMovie(id: string): Promise<MovieEntity> {
+    let res = await fetch(this.url + id, {
+      method: 'delete'
+    });
+    return res.json();
+  }
 }

@@ -20,4 +20,14 @@ export class PersonResolver {
   async createPerson(@Args('person') person) {
     return await this.personService.createPerson(person);
   }
+
+  @Mutation()
+  async updatePerson(@Args('id') id: string, @Args('person') person) {
+    return await this.personService.updatePerson(id, person);
+  }
+
+  @Mutation()
+  async deletePerson(@Args('id') id: string) {
+    return await this.personService.deletePerson(id);
+  }
 }

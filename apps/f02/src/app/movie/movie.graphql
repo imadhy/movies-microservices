@@ -32,6 +32,6 @@ type Query {
 
 type Mutation {
   createMovie(movie: MovieInput): Movie
-  # updateMovie(id: !ID, input: MovieInput): Movie
-  # deleteMovie(id: !ID): Movie
+  updateMovie(id: ID!, movie: MovieInput): Movie
+  deleteMovie(id: ID!): Movie
 }
