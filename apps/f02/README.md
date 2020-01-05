@@ -4,6 +4,8 @@
 
 ## Setup
 
+Start the dev server of d02 and f02 service
+
 ```console
 npm start d02
 npm start f02
@@ -17,4 +19,4 @@ This project is using GraphQL which generate his own documentation available dir
 
 ## Request Testing
 
-An insomnia configuration is included in order to test the requests available.
+An `insomnia.json` configuration is included in order to test the requests available.
