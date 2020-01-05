@@ -25,7 +25,13 @@ export class CategoryService {
   }
 
   async update(id: string, data: Partial<CategoryEntity>) {
-    return await this.CategoryRepository.update({ id }, data);
+    const category = await this.CategoryRepository.findOne({
+      where: { id }
+    });
+    return this.CategoryRepository.save({
+      ...category,
+      ...data
+    });
   }
 
   async destroy(id: string) {

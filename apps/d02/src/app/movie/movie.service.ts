@@ -66,7 +66,14 @@ export class MovieService {
     directors: String[]
   ) {
     await this.setRelations(id, categories, actors, producers, directors);
-    return await this.movieRep.update({ id }, data);
+    const movie = await this.movieRep.findOne({
+      where: { id },
+      relations: ['categories', 'actors', 'producers', 'directors']
+    });
+    return this.movieRep.save({
+      ...movie,
+      ...data
+    });
   }
   async setRelations(
     id: string,
