@@ -7,7 +7,7 @@ import { UserInput } from './inputs/user.input';
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
-  @Mutation(() => Message) // Create User
+  @Mutation(() => User) // Create User
   async addUser(@Args('input') input: UserInput) {
     return await this.userService.addUser(input);
   }

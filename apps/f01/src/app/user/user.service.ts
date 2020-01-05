@@ -43,7 +43,7 @@ export class UserService {
       });
   }
 
-  async addUser(user: UserInput): Promise<Message> {
+  async addUser(user: UserInput): Promise<User> {
     this.http
       .post('http://localhost:3003/api/user/post', user)
       .toPromise()
@@ -53,11 +53,7 @@ export class UserService {
       .catch(err => {
         return err;
       });
-    return {
-      message: 'Your account is successfully created.',
-      type: 'Info',
-      status: 200
-    };
+    return user;
   }
 
   async getUserByUserId(

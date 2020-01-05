@@ -62,7 +62,7 @@ type Movie {
 }
 
 type Mutation {
-  addUser(input: UserInput!): Message!
+  addUser(input: UserInput!): User!
   addComment(input: CommentInput!): Comment!
   addFavorite(input: FavoriteInput!): Message!
   deleteFavorite(input: FavoriteInput!): Message!
@@ -97,12 +97,13 @@ type User {
 }
 
 input UserInput {
+  id: String!
   first_name: String!
   last_name: String!
   email: String!
   country: String!
-  created_at: DateTime!
-  birthday: DateTime!
+  created_at: String!
+  birthday: String!
   gender: String!
   admin: Boolean!
 }
