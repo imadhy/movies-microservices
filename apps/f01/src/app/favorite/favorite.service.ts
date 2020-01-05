@@ -1,9 +1,8 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { Injectable, HttpService } from '@nestjs/common';
 import { FavoritesAlt, Message } from '@movie-ms/dto';
 import { FavoriteInput } from './inputs/favorite.input';
 import { v4 as uuid } from 'uuid';
-import { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class FavoriteService {
@@ -13,9 +12,24 @@ export class FavoriteService {
     this.favorites = [];
   }
 
+  /**
+   * Make a request from a distant service
+   * @param url API endpoint
+   */
+  request(url: string): string {
+    let response: string = null;
+    this.http.get(url).subscribe(res => response = res.data);
+    return response;
+  }
+
+  /**
+   * Insert a favorite
+   * @param favorite A favorite object, defined by a user id and a movie id
+   */
   async addFavorite(favorite: FavoriteInput): Promise<Message> {
 
     //D01 missing request : get favorite by userId and movieId
+    // const response = JSON.parse(this.request('http://localhost:3003/api/favorite/???'));
 
     const favIndex = this.favorites.findIndex(fav => {
       return (
@@ -23,11 +37,9 @@ export class FavoriteService {
       );
     });
 
-    let result = {
-      message: 'Favorite already exists',
-      type: 'Error',
-      status: 400
-    };
+    let message = 'Favorite already exists';
+    let type = 'Error';
+    let status = 400;
 
     if (favIndex === -1) {
       this.favorites.push({
@@ -36,32 +48,40 @@ export class FavoriteService {
         movie_id: favorite.movie_id
       });
 
-      // LIVE ADD FAVORITE
-      // const request = 'http://localhost:3003/api/favorite/post';
-      // this.http.post(request, favorite).toPromise().then(res => {
-      //   return res.data;
-      // }).catch(err => {
-      //   return err;
-      // });
+      // const response = JSON.parse(this.request('http://localhost:3003/api/favorite/post'));
 
-      result.message = 'Favorite has been successfully added';
-      result.type = 'Info';
-      result.status = 200;
+      message = 'Favorite has been successfully added';
+      type = 'Info';
+      status = 200;
     }
 
-    return result;
+    return {
+      message: message,
+      type: type,
+      status: status
+    };
   }
 
+  /**
+   * Get an user favorite list
+   * @param user_id User id
+   */
   async getFavoriteByUserId(user_id: string): Promise<FavoritesAlt[]> {
 
     //D01 missing request : get favorite by userId
+    // const response = JSON.parse(this.request('http://localhost:3003/api/favorite/???'));
 
     return this.favorites.filter(favorite => favorite.user_id === user_id);
   }
 
+  /**
+   * Delete a favorite
+   * @param favorite A favorite object, defined by a user id and a movie id
+   */
   async deleteFavorite(favorite: FavoriteInput): Promise<Message> {
 
     //D01 missing request : delete favorite by userId and movieId
+    // const response = JSON.parse(this.request('http://localhost:3003/api/favorite/???'));
 
     const favIndex = this.favorites.findIndex(fav => {
       return (
@@ -69,20 +89,22 @@ export class FavoriteService {
       );
     });
 
-    let result = {
-      message: 'No such favorite has been found',
-      type: 'Error',
-      status: 400
-    };
+    let message = 'No such favorite has been found';
+    let type = 'Error';
+    let status = 400;
 
     if (favIndex !== -1) {
       this.favorites.splice(favIndex, 1);
 
-      result.message = 'Favorite has been successfully deleted';
-      result.type = 'Info';
-      result.status = 200;
+      message = 'Favorite has been successfully deleted';
+      type = 'Info';
+      status = 200;
     }
 
-    return result;
+    return {
+      message: message,
+      type: type,
+      status: status
+    };
   }
 }
