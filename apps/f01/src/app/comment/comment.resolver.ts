@@ -7,7 +7,7 @@ import { CommentInput } from './inputs/comment.input';
 export class CommentResolver {
   constructor(private readonly commentService: CommentService) {}
 
-  @Mutation(() => Comment) // Create Comment
+  @Mutation(() => Message) // Create Comment
   async addComment(@Args('input') body: CommentInput) {
     return await this.commentService.create(body);
   }

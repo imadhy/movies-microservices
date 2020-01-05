@@ -13,12 +13,16 @@ type Comment {
   userId: ID!
   movieId: ID!
   comment: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  rating: Float!
 }
 
 input CommentInput {
   userId: ID!
   movieId: ID!
   comment: String!
+  rating: Float!
 }
 
 """
