@@ -1,63 +1,43 @@
 import { Injectable } from '@nestjs/common';
 import { MovieEntity } from '../../../../../libs/dto/src/lib/d02/movie.entity';
+import fetch from 'node-fetch';
 
 @Injectable()
 export class MovieService {
-  private readonly movies: MovieEntity[] = [
-    {
-      id: '1',
-      category_id: '2',
-      title: 'Jurassic Park',
-      duration: 127,
-      director: 1,
-      producer: 1,
-      release: new Date(),
-      synopsis: 'Le Parc jurassique',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      id: '2',
-      category_id: '1',
-      title: 'Fiction Pulpeuse',
-      duration: 136,
-      director: 2,
-      producer: 2,
-      release: new Date(),
-      synopsis: 'PAN PAN PAN PAN',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
-  ];
-
+  private url: string = 'http://localhost:3333/api/movie/';
   // Retrieve Movie By Id
-  getMovieById(id: string): MovieEntity {
-    return this.movies.find(movie => movie.id === id);
+  async getMovieById(id: string): Promise<MovieEntity> {
+    let res = await fetch(this.url + id);
+    return res.json();
   }
 
   // Retrieve All Movies
-  getAllMovies(): MovieEntity[] {
-    return this.movies;
+  async getAllMovies(): Promise<MovieEntity[]> {
+    let res = await fetch(this.url);
+    return res.json();
   }
 
-  // Create Movie
-  createMovie(movie: MovieEntity): MovieEntity {
-    movie.id = `${this.movies.length + 1}`;
-    this.movies.push(movie);
-    return movie;
-  }
+  // // Create Movie
+  // async createMovie(movie: MovieEntity): Promise<MovieEntity> {
+  //   let res = await fetch(this.url, {
+  //     method: 'post',
+  //     body: JSON.stringify(movie),
+  //     headers: { 'Content-Type': 'application/json' }
+  //   });
+  //   return res.json();
+  // }
 
-  // Update Movie By Id
-  updateMovieById(id: string, movie: MovieEntity): MovieEntity {
-    let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
-    this.movies[index] = movie;
-    return movie;
-  }
+  // // Update Movie By Id
+  // updateMovieById(id: string, movie: MovieEntity): MovieEntity {
+  //   let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
+  //   this.movies[index] = movie;
+  //   return movie;
+  // }
 
-  // Delete Movie By Id
-  deleteMovieById(id: string): string {
-    let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
-    this.movies.splice(index, 1);
-    return 'movie deleted';
-  }
+  // // Delete Movie By Id
+  // deleteMovieById(id: string): string {
+  //   let index = this.movies.indexOf(this.movies.find(movie => movie.id === id));
+  //   this.movies.splice(index, 1);
+  //   return 'movie deleted';
+  // }
 }

@@ -3,6 +3,10 @@ type Category {
   name: String
 }
 
+# input CategoryInput {
+#   name: String
+# }
+
 type Query {
   category(id: ID!): Category
   categories: [Category]

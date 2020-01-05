@@ -30,20 +30,30 @@ export class MovieResolver {
   }
 
   @ResolveProperty()
-  async category(@Parent() movie) {
-    const { id } = movie;
-    return await this.categoryService.getCategoryById(id);
+  async categories(@Parent() movie) {
+    return await movie.categories.map(async category => {
+      return await this.categoryService.getCategoryById(category.id);
+    });
   }
 
   @ResolveProperty()
-  async director(@Parent() movie) {
-    const { id } = movie;
-    return await this.personService.getPersonById(id);
+  async actors(@Parent() movie) {
+    return await movie.directors.map(async actors => {
+      return await this.personService.getPersonById(actors.id);
+    });
   }
 
   @ResolveProperty()
-  async producer(@Parent() movie) {
-    const { id } = movie;
-    return await this.personService.getPersonById(id);
+  async directors(@Parent() movie) {
+    return await movie.directors.map(async directors => {
+      return await this.personService.getPersonById(directors.id);
+    });
+  }
+
+  @ResolveProperty()
+  async producers(@Parent() movie) {
+    return await movie.producers.map(async producers => {
+      return await this.personService.getPersonById(producers.id);
+    });
   }
 }

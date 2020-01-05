@@ -2,11 +2,11 @@ scalar Date
 
 type Movie {
   id: ID!
-  category: Category
+  categories: [Category]
   title: String
   duration: Int
-  director: Person
-  producer: Person
+  directors: [Person]
+  producers: [Person]
   actors: [Person]
   release: Date
   synopsis: String
@@ -14,13 +14,24 @@ type Movie {
   updatedAt: Date
 }
 
+# input MovieInput {
+#   categories: [ID]
+#   title: String
+#   duration: Int
+#   directors: [ID]
+#   producers: [ID]
+#   actors: [ID]
+#   release: Date
+#   synopsis: String
+# }
+
 type Query {
   movie(id: ID!): Movie
   movies: [Movie]
 }
 
 # type Mutation {
-#   createMovie(movie: Movie): Movie
-#   updateMovie(id: !ID, movie: Movie): Movie
-#   deleteMovie(id: !ID): Movie
+# createMovie(input: MovieInput): Movie
+# updateMovie(id: !ID, input: MovieInput): Movie
+# deleteMovie(id: !ID): Movie
 # }

@@ -4,6 +4,11 @@ type Person {
   age: Int
 }
 
+# input PersonInput {
+#   name: String
+#   age: Int
+# }
+
 type Query {
   person(id: ID!): Person
   persons: [Person]

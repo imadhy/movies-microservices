@@ -4,6 +4,8 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
+    "d02": "nx serve d02 --port=7777",
+    "f02": "nx serve f02 --port=7778",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
@@ -62,11 +64,12 @@
     "@nestjs/core": "^6.2.4",
     "@nestjs/graphql": "^6.5.3",
     "@nestjs/platform-express": "^6.2.4",
-    "apollo-server-express": "^2.9.13",
-    "reflect-metadata": "^0.1.12",
     "@nestjs/typeorm": "^6.2.0",
+    "apollo-server-express": "^2.9.13",
     "mysql": "^2.17.1",
+    "node-fetch": "^2.6.0",
     "pg": "^7.14.0",
+    "reflect-metadata": "^0.1.12",
     "typeorm": "^0.2.21"
   },
   "devDependencies": {

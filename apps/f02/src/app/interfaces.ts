@@ -12,11 +12,11 @@ export interface Category {
 
 export interface Movie {
     id: string;
-    category?: Category;
+    categories?: Category[];
     title?: string;
     duration?: number;
-    director?: Person;
-    producer?: Person;
+    directors?: Person[];
+    producers?: Person[];
     actors?: Person[];
     release?: Date;
     synopsis?: string;

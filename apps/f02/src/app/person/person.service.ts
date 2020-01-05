@@ -1,29 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { Person } from '../interfaces';
 import { PersonEntity } from '../../../../../libs/dto/src/lib/d02/person.entity';
+import fetch from 'node-fetch';
 
 @Injectable()
 export class PersonService {
-  private readonly persons: PersonEntity[] = [
-    {
-      id: '1',
-      name: 'Quentin Tarantino',
-      age: 56
-    },
-    {
-      id: '2',
-      name: 'Steven Spielberg',
-      age: 73
-    }
-  ];
+  private url: string = 'http://localhost:3333/api/person/';
 
   // Retrieve Person By Id
-  getPersonById(id: string): Person {
-    return this.persons.find(person => person.id === id);
+  async getPersonById(id: string): Promise<PersonEntity> {
+    let res = await fetch(this.url + id);
+    return res.json();
   }
 
   // Retrieve All Persons
-  getAllPersons(): Person[] {
-    return this.persons;
+  async getAllPersons(): Promise<PersonEntity[]> {
+    let res = await fetch(this.url);
+    return res.json();
   }
 }
