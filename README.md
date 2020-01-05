@@ -57,6 +57,29 @@ Cette ressource regroupe les réalisateurs, les acteurs et les producteurs.
 - ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) PUT - `category/{id}` : met à jour une catégorie
 - ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) DELETE - `category/{id}` : supprime une catégorie
 
+## Exemples d'appels
+
+Note: les identifiants dans les champs "ids" correspondent aux identifiants des catégories et personnes. Ceux-ci sont générés aléatoirement lorsque vous créez ces entités. Ces entités doivent avoir étés préalablement créées. 
+
+POST `http://localhost:3333/api/movie/`
+```
+{"title": "OSS 117",
+"categories": {"ids" : ["102bf961-45c5-4f09-86bb-2ae8e2982756", "202bf961-45c5-4f09-86bb-2ae8e2982756"]},
+"directors": {"ids" : ["11b5c654-645a-4435-8bba-7e399b0c7ed7"]},
+"actors": {"ids" : ["11b5c654-645a-4435-8bba-7e399b0c7ed7"]},
+"producers": {"ids" : ["11b5c654-645a-4435-8bba-7e399b0c7ed7"]}
+}
+```
+PUT `http://localhost:3333/api/movie/6e7be985-d7ff-46ce-9706-4f093cf18ff2`
+
+Pour cet appel, si vous souhaitez modifier les catégories, les acteurs, les producteurs ou les réalisateurs vous devez systématiquement envoyer l'ensemble des identifiants. Si vous souhaitez supprimer tous les acteurs, renvoyez simplement un taleau vide. 
+```
+{"title": "La soupe aux choux",
+"categories": {"ids" : ["102bf961-45c5-4f09-86bb-2ae8e2982756", "202bf961-45c5-4f09-86bb-2ae8e2982756", "302bf961-45c5-4f09-86bb-2ae8e2982756"]},
+"producers": {"ids" : []}
+}
+```
+
 ## Modèle de données
 
 ![alt text](https://github.com/imadhy/movies-microservices/blob/d02/base/mcd_domaine2.png?raw=true)
