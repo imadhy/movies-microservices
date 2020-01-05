@@ -25,7 +25,13 @@ export class PersonService {
   }
 
   async update(id: string, data: Partial<PersonEntity>) {
-    return await this.PersonRepository.update({ id }, data);
+    const person = await this.PersonRepository.findOne({
+      where: { id }
+    });
+    return this.PersonRepository.save({
+      ...person,
+      ...data
+    });
   }
 
   async destroy(id: string) {
