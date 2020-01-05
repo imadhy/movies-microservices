@@ -3,11 +3,15 @@ type Category {
   name: String
 }
 
-# input CategoryInput {
-#   name: String
-# }
+input CategoryInput {
+  name: String
+}
 
 type Query {
   category(id: ID!): Category
   categories: [Category]
+}
+
+type Mutation {
+  createCategory(category: CategoryInput): Category
 }

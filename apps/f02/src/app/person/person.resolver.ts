@@ -1,4 +1,4 @@
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { PersonService } from './person.service';
 import { Person } from '../interfaces';
 
@@ -14,5 +14,10 @@ export class PersonResolver {
   @Query()
   async persons() {
     return await this.personService.getAllPersons();
+  }
+
+  @Mutation()
+  async createPerson(@Args('person') person) {
+    return await this.personService.createPerson(person);
   }
 }

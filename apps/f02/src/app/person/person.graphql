@@ -4,12 +4,16 @@ type Person {
   age: Int
 }
 
-# input PersonInput {
-#   name: String
-#   age: Int
-# }
+input PersonInput {
+  name: String
+  age: Int
+}
 
 type Query {
   person(id: ID!): Person
   persons: [Person]
+}
+
+type Mutation {
+  createPerson(person: PersonInput): Person
 }

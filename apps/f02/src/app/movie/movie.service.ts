@@ -17,15 +17,16 @@ export class MovieService {
     return res.json();
   }
 
-  // // Create Movie
-  // async createMovie(movie: MovieEntity): Promise<MovieEntity> {
-  //   let res = await fetch(this.url, {
-  //     method: 'post',
-  //     body: JSON.stringify(movie),
-  //     headers: { 'Content-Type': 'application/json' }
-  //   });
-  //   return res.json();
-  // }
+  // Create Movie
+  async createMovie(movie: MovieEntity): Promise<MovieEntity> {
+    console.log(movie);
+    let res = await fetch(this.url, {
+      method: 'post',
+      body: JSON.stringify(movie),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    return res.json();
+  }
 
   // // Update Movie By Id
   // updateMovieById(id: string, movie: MovieEntity): MovieEntity {

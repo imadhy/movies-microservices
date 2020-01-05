@@ -14,24 +14,24 @@ type Movie {
   updatedAt: Date
 }
 
-# input MovieInput {
-#   categories: [ID]
-#   title: String
-#   duration: Int
-#   directors: [ID]
-#   producers: [ID]
-#   actors: [ID]
-#   release: Date
-#   synopsis: String
-# }
+input MovieInput {
+  categories: [ID]
+  title: String
+  duration: Int
+  directors: [ID]
+  producers: [ID]
+  actors: [ID]
+  release: Date
+  synopsis: String
+}
 
 type Query {
   movie(id: ID!): Movie
   movies: [Movie]
 }
 
-# type Mutation {
-# createMovie(input: MovieInput): Movie
-# updateMovie(id: !ID, input: MovieInput): Movie
-# deleteMovie(id: !ID): Movie
-# }
+type Mutation {
+  createMovie(movie: MovieInput): Movie
+  # updateMovie(id: !ID, input: MovieInput): Movie
+  # deleteMovie(id: !ID): Movie
+}

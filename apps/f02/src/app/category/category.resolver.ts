@@ -1,4 +1,4 @@
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { CategoryService } from './category.service';
 import { Category } from '../interfaces';
 
@@ -14,5 +14,10 @@ export class CategoryResolver {
   @Query()
   async categories() {
     return await this.categoryService.getAllCategories();
+  }
+
+  @Mutation()
+  async createCategory(@Args('category') category) {
+    return await this.categoryService.createCategory(category);
   }
 }

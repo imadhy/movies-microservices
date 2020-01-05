@@ -7,15 +7,25 @@ import fetch from 'node-fetch';
 export class CategoryService {
   private url: string = 'http://localhost:3333/api/category/';
 
-  // Retrieve Person By Id
+  // Retrieve Category By Id
   async getCategoryById(id: string): Promise<Category> {
     let res = await fetch(this.url + id);
     return await res.json();
   }
 
-  // Retrieve All Persons
+  // Retrieve All Categories
   async getAllCategories(): Promise<CategoryEntity[]> {
     let res = await fetch(this.url);
+    return res.json();
+  }
+
+  // Create Category
+  async createCategory(category: CategoryEntity): Promise<CategoryEntity> {
+    let res = await fetch(this.url, {
+      method: 'post',
+      body: JSON.stringify(category),
+      headers: { 'Content-Type': 'application/json' }
+    });
     return res.json();
   }
 }

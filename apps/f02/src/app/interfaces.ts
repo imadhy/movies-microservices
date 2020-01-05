@@ -5,6 +5,26 @@
  */
 
 /* tslint:disable */
+export interface CategoryInput {
+    name?: string;
+}
+
+export interface MovieInput {
+    categories?: string[];
+    title?: string;
+    duration?: number;
+    directors?: string[];
+    producers?: string[];
+    actors?: string[];
+    release?: Date;
+    synopsis?: string;
+}
+
+export interface PersonInput {
+    name?: string;
+    age?: number;
+}
+
 export interface Category {
     id: string;
     name?: string;
@@ -22,6 +42,12 @@ export interface Movie {
     synopsis?: string;
     createdAt?: Date;
     updatedAt?: Date;
+}
+
+export interface IMutation {
+    createCategory(category?: CategoryInput): Category | Promise<Category>;
+    createMovie(movie?: MovieInput): Movie | Promise<Movie>;
+    createPerson(person?: PersonInput): Person | Promise<Person>;
 }
 
 export interface Person {

@@ -38,7 +38,7 @@ export class MovieResolver {
 
   @ResolveProperty()
   async actors(@Parent() movie) {
-    return await movie.directors.map(async actors => {
+    return await movie.actors.map(async actors => {
       return await this.personService.getPersonById(actors.id);
     });
   }
@@ -55,5 +55,14 @@ export class MovieResolver {
     return await movie.producers.map(async producers => {
       return await this.personService.getPersonById(producers.id);
     });
+  }
+
+  @Mutation()
+  async createMovie(@Args('movie') movie) {
+    movie.categories = { ids: movie.categories };
+    movie.actors = { ids: movie.categories };
+    movie.directors = { ids: movie.categories };
+    movie.producers = { ids: movie.categories };
+    return await this.movieService.createMovie(movie);
   }
 }

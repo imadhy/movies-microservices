@@ -18,4 +18,14 @@ export class PersonService {
     let res = await fetch(this.url);
     return res.json();
   }
+
+  // Create Person
+  async createPerson(person: PersonEntity): Promise<PersonEntity> {
+    let res = await fetch(this.url, {
+      method: 'post',
+      body: JSON.stringify(person),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    return res.json();
+  }
 }
