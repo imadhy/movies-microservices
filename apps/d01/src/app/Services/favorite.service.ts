@@ -5,15 +5,15 @@ import { Favorite } from '../../../../../libs/dto/src/lib/d01/favorite.entity';
 
 @Injectable()
 export class FavoriteService {
-
   constructor(
     @InjectRepository(Favorite)
     private readonly favoriteRepo: Repository<Favorite>
   ) {}
 
   async findByID(id) {
-    return this.favoriteRepo.query(
-      'SELECT * FROM favorites where "user" = $1', [id]);
+    return this.favoriteRepo.query('SELECT * FROM favorites where "id" = $1', [
+      id
+    ]);
   }
 
   async deleteById(id) {
