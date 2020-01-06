@@ -13,9 +13,6 @@ type Comment {
   userId: ID!
   movieId: ID!
   comment: String!
-  created_at: DateTime!
-  updated_at: DateTime!
-  rating: Float!
 }
 
 input CommentInput {
@@ -67,7 +64,7 @@ type Movie {
 
 type Mutation {
   addUser(input: UserInput!): User!
-  addComment(input: CommentInput!): Comment!
+  addComment(input: CommentInput!): Message!
   addFavorite(input: FavoriteInput!): Message!
   deleteFavorite(input: FavoriteInput!): Message!
 }
