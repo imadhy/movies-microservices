@@ -308,8 +308,6 @@ Example response :
 
 ---
 
-blabla
-
 ### Users
 
 #### GraphQL POST `addUser`
