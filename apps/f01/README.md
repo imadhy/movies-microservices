@@ -15,49 +15,33 @@ npm start f01
 - `Message`
 
 | Attribute | Type | Description |
-
 | - | - | - |
-
 | message | string | Request information |
-
 | type | string | Message type (Info / Error) |
-
 | status | number | Request status |
 
 - `Favorite`
 
 | Attribute | Type | Description |
-
 | - | - | - |
-
 | user_id | string | User id |
-
 | movie_id | string | Movie id |
 
 - `Comment`
 
 | Attribute | Type | Description |
-
 | - | - | - |
-
 | mediaId | string | Movie id |
-
 | createdAt | Date | creation Date|
-
 | updatedAt | Date | Last Upload Date |
-
 | rating | string | rating |
-
 | text | string | Content of Comment |
-
 | user | string | user id |
 
 ## Usage
 
 | Endpoint |
-
 | - |
-
 | <http://localhost:3001/graphql> |
 
 ---
@@ -71,23 +55,14 @@ Example request :
 ```qraphql
 
 mutation {
-
-addFavorite(input: {
-
-user_id: "shaggy"
-
-movie_id: "1984"
-
-}) {
-
-message
-
-type
-
-status
-
-}
-
+  addFavorite(input: {
+    user_id: "shaggy"
+    movie_id: "1984"
+  }) {
+    message
+    type
+    status
+  }
 }
 
 ```
@@ -113,21 +88,13 @@ Example response :
 Example request :
 
 ```qraphql
-
 {
-
-getFavoriteByUserId(user_id: "shaggy") {
-
-id
-
-user_id
-
-movie_id
-
+  getFavoriteByUserId(user_id: "shaggy") {
+    id
+    user_id
+    movie_id
+  }
 }
-
-}
-
 ```
 
 Example response :
@@ -138,9 +105,7 @@ Example response :
     "getFavoriteByUserId": [
       {
         "id": "42c49b34-84b2-43f0-ba46-001437445a61",
-
         "user_id": "shaggy",
-
         "movie_id": "1984"
       }
     ]
@@ -155,25 +120,16 @@ Example request :
 ```qraphql
 
 mutation {
-
-deleteFavorite(
-
-input: {
-
-user_id: "shaggy"
-
-movie_id: "1984"
-
-}) {
-
-message
-
-type
-
-status
-
-}
-
+  deleteFavorite(
+    input: {
+      user_id: "shaggy"
+      movie_id: "1984"
+    }
+   ) {
+    message
+    type
+    status
+  }
 }
 
 ```
@@ -185,9 +141,7 @@ Example response :
   "data": {
     "deleteFavorite": {
       "message": "Favorite has been successfully deleted",
-
       "type": "Info",
-
       "status": 200
     }
   }
@@ -205,20 +159,15 @@ Example request :
 ```qraphql
 
 mutation {
-
-addComment(
-
-input: {
-
-userId:"1",
-
-movieId:"1",
-
-comment:"comment",
-
-rating:4
-
-}){message,type,status}}
+  addComment(
+    input: {
+      userId:"1",
+      movieId:"1",
+      comment:"comment",
+      rating:4
+    }
+  ){message,type,status}
+}
 
 ```
 
@@ -229,9 +178,7 @@ Example response :
   "data": {
     "addComment": {
       "message": "Your comment is successfully add.",
-
       "type": "Info",
-
       "status": 201
     }
   }
@@ -249,13 +196,9 @@ Example request :
 
 
 query {
-
-findComment(
-
-id:"11"
-
-){id}
-
+  findComment(
+    id:"11"
+  ){id}
 }
 
 ```
@@ -279,13 +222,9 @@ Example request :
 ```qraphql
 
 query {
-
-deleteComment(
-
-id:"11"
-
-){message,type,status}
-
+  deleteComment(
+    id:"11"
+  ){message,type,status}
 }
 
 ```
@@ -317,41 +256,31 @@ Example request :
 ```qraphql
 
 mutation {
-
-addUser(
-
-input: {
-
-id:"1",
-
-first_name:"Elouan",
-
-last_name:"lfx",
-
-country:"France",
-
-birthday: "2000-07-07T23:00:00.000Z",
-
-gender: "unknown"
-
-email: "elouan.lafrechoux@ynov.com",
-
-created_at: "2019-12-09T23:00:00.000Z",
-
-admin: false
-
-})
-{
-    id
-    first_name
-    last_name
-    email
-    country
-    created_at
-    birthday
-    gender
-    admin
-}}
+  addUser(
+    input: {
+      id:"1",
+      first_name:"Elouan",
+      last_name:"lfx",
+      country:"France",
+      birthday: "2000-07-07T23:00:00.000Z",
+      gender: "unknown"
+      email: "elouan.lafrechoux@ynov.com",
+      created_at: "2019-12-09T23:00:00.000Z",
+      admin: false
+    }
+  )
+  {
+      id
+      first_name
+      last_name
+      email
+      country
+      created_at
+      birthday
+      gender
+      admin
+  }
+}
 
 ```
 
