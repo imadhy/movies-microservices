@@ -13,7 +13,7 @@ export class AppService {
   }
 
   /**
-   * Récupère le nombre de favoris d'un média
+   * Récupère le nombre de favoris par média
    */
   getNbFavByMedia(): String {
     var data = [
@@ -103,7 +103,7 @@ export class AppService {
       var authArrayTemp: FavByAuthor[] = [];
 
       nbFavByFilm.forEach(favElmt => {
-        let auth = JSON.parse(this.callApi('https://api/getAuth/' + favElmt.id_media));
+        let auth = JSON.parse(this.callApi('http://localhost:3004/api/getAuth/' + favElmt.id_media));
         auth = {auth_id: "4"};
         authArrayTemp.push({auth_id: auth["auth_id"], nb_fav: favElmt.nb_fav});
       });
