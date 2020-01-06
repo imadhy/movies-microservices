@@ -1,19 +1,22 @@
 # Documentation
 
 ## Infos pratiques
-> Port à utiliser : 300x  x = numéro du groupe
+
+> Port à utiliser : 300x x = numéro du groupe
 
 **Nomenclature commits :**
 `<type>(<portée>):<description>`
 ex: feature(rest):added jwt support
 Si votre commit nécessite plus d’informations, n’hésitez pas à ajouter un commentaire dessus sur github, ou à utiliser plusieurs messages(-m)
-* Pas de console.log
-* Pas de commentaires du type: //TODO //FIX
-* Pas de majuscules dans les commits
 
-**Nomenclature branches  :**
+- Pas de console.log
+- Pas de commentaires du type: //TODO //FIX
+- Pas de majuscules dans les commits
+
+**Nomenclature branches :**
 `<perimetre>/<type de modification>/<modification>`
->  ex: F02/features/comment-section
+
+> ex: F02/features/comment-section
 
 Quand vous voulez merge votre branche sur une branche principale, faites des Pull Requests et attendez qu’elles soient validées par votre Lead Tech.
 
@@ -55,7 +58,9 @@ Si vous avez des besoins, ou des problèmes, n’hésitez pas à créer des issu
   admin: boolean;
 }
 ```
+
 **Fav**
+
 ```TypeScript
 {
   id: number;
